@@ -1,0 +1,29 @@
+/*
+ * EDIT SAVING
+ */
+button {
+    background: var(--fg-color);
+    color: var(--bg-color);
+}
+
+button.delete {
+    background: firebrick;
+    border: 1px solid firebrick;
+    float: right;
+}
+
+button.delete a {
+    border-bottom: none;
+    color: white;
+}
+
+.unsaved {
+    border: 1px solid firebrick;
+}
+
+/*
+ * NOT LOGGED IN
+ */
+p#summary {
+    max-width: 600px;
+}

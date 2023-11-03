@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div
+            id="{{ book.slug }}"
+            class="books-list__item
+                    {{ book.finished_at ? 'done' : (book.abandonned_at ? 'abandonned' : 'reading') }}
+            ">
+
+        <div class="title-item">
+            <a href="?slug={{ book.slug }}&action=show }}"
+               class="list__book-title"><strong>{{ book.title }}</strong></a>
+        </div>
+        <div class="author-item">
+            <a href="?filter[author]={{ book.author }}" class="list__filter-link">
+                <strong>{{ book.author_name ?? book.author }}</strong>
+            </a>
+        </div>
+{#        {{ dump(book.type) }}#}
+        {#
+        <div class="type-item">
+            <a href="?filter[type]={{ book.type.name }}" class="list__filter-link">
+                <span class="badge {{ book.type.name }}">{{ book.type.name }}</span>
+            </a>
+        </div>
+        <div class="note-item">
+            <a href="?filter[note]={{ book.note.id }}" class="list__filter-link">
+                <span class="badge note_{{ book.note.id }}" title="{{ book.note.legend }}">{{ book.note.name }}</span>
+            </a>
+        </div>#}
+        <div class="finished-at-item">
+            {{ book.finished_at
+            ? book.finished_at|date('Y⋅m⋅d')
+            : (book.abandonned_at ? 'abandonned' : 'currently reading') }}
+        </div>
+        <div>
+        </div>
+
+    </div>
+
+{% endblock %}

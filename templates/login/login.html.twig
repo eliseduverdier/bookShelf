@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}🤷 Login{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" name="{{ path('login') }}" id="login">
+        <div>
+            <label>
+                <input value="{{ last_username }}" type="text" name="_username" placeholder="username" />
+            </label>
+        </div>
+        <div>
+            <label>
+                <input value="" type="password" name="_password" placeholder="password" />
+                <span class="see-password">(see)</span>
+            </label>
+        </div>
+        <div>
+            <button type="submit">OK</button>
+        </div>
+    </form>
+
+
+    Or <a href="/signup">sign up</a>
+
+
+    <script>
+        document.querySelector('.see-password').addEventListener('click', function() {
+            var password = document.querySelector('input[name="password"]');
+            if (password.getAttribute('type') === 'password') {
+                password.setAttribute('type', 'text');
+            } else {
+                password.setAttribute('type', 'password');
+            }
+        });
+    </script>
+
+{% endblock %}

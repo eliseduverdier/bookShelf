@@ -1,0 +1,68 @@
+:root {
+    --bg-color: #fff;
+    --fg-color: #04c062;
+    --link-color: black;
+    --fun-color: #C3FF0D;
+}
+
+[data-theme="dark"] {
+    --bg-color: #222;
+    --fg-color: #A9F6CF;
+    --link-color: white;
+    --fun-color: #BBE741;
+}
+
+html {
+    font: normal 15px monospace;
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+}
+
+body {
+    margin: 10px;
+}
+
+a {
+    color: var(--link-color);
+    border-bottom: 3px solid var(--fg-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--fg-color);
+}
+
+a.edit, a.see {
+    border-bottom: none;
+}
+
+a.list__book-title {
+    color: var(--fg-color);
+}
+a.list__book-title {
+    color: var(--fg-color);
+    border-bottom: 1px solid var(--fg-color);
+}
+
+a.list__book-title:hover {
+    color: var(--link-color);
+    border-bottom: 3px solid var(--fg-color);
+}
+
+a.list__filter-link {
+    border-bottom: none;
+    font-weight: normal;
+}
+
+#auth {
+    float: right;
+}
+
+h1 {
+    text-shadow:
+             4px  4px 0 var(--bg-color),
+            -4px -4px 0 var(--bg-color),
+             4px -4px 0 var(--bg-color),
+            -4px  4px 0 var(--bg-color)
+;
+}

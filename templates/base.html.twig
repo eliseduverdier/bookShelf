@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Books{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📚</text></svg>">
+    {% block stylesheets %}
+        <style>
+            {% include 'css/base.css' %}
+            {% include 'css/components.css' %}
+            {% include 'css/table.css' %}
+            {% include 'css/edition.css' %}
+            {% include 'css/tags.css' %}
+            {% include 'css/notes.css' %}
+            {% include 'css/input.css' %}
+            {% include 'css/artsy.css' %}
+            {% include 'css/confettis.css' %}
+        </style>
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    {% block nav %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            Hello {{ currentUser.username }} !
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+    {% endblock %}
+</nav>
+<main>
+
+    <h1>Books</h1>
+
+    {% block content %}{% endblock %}
+
+</main>
+</body>
+</html>

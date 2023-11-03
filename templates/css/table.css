@@ -1,0 +1,79 @@
+/*
+ *  LIST
+ */
+ul, form {
+    width: 75vw;
+    max-width: 1260px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 5px;
+    border-bottom: 1px dotted #aaa;
+    width: 100%;
+    white-space: nowrap;
+}
+
+li div, div.new-book form {
+    display: inline-block;
+    padding: 5px;
+    margin:0;
+}
+
+li.books-list__item div {
+    white-space: normal;
+}
+
+li.books-list__item.reading {
+    opacity: .5;
+}
+
+li.books-list__item.abandonned {
+    opacity: .7;
+}
+
+li.books-list__item.abandonned div {
+    text-decoration: line-through;
+}
+
+li.books-list__item div.title-item,
+form div.title-item
+{
+    width: 34%;
+}
+
+li.books-list__item div.author-item,
+form div.author-item {
+    width: 25%;
+}
+
+li.books-list__item div.type-item,
+form div.type-item {
+    width: 10%;
+}
+
+li.books-list__item div.note-item,
+form div.note-item {
+    width: 10%;
+}
+
+li.books-list__item div.finished-at-item,
+form div.finished-at-item {
+    width: 15%;
+}
+
+li.active {
+    background: #eee;
+}
+
+
+/** FORM **/
+div.new-book form {
+    white-space: nowrap;
+}
+div.new-book form div {
+    display: inline-block;
+    padding: 5px;
+}
