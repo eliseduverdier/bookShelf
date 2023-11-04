@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}📖 {{ book.title }}{% endblock %}
+
+{% block mainTitle %}
+    {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <p><a href="..">⬅ Back</a></p>
+
+    <form method="POST" name="?action=edit&slug={{ book.slug }}" id="edit" data-slug="{{ book.slug }}">
+        <div>
+            <label>
+                <input value="{{ book.title }}" type="text" name="title" placeholder="title" autocomplete="off"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input value="{{ book.author }}" type="text" name="author" placeholder="author" autocomplete="off"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <select name="type">
+                    <option value="">—Type—</option>
+                    {% for type in types %}
+                        <option value="{{ type.id }}" {{ book.type.id == type.id ? 'selected="true"' : '' }}
+                                autocomplete="off"> {{ type.name }} </option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div>
+            <label>
+                <select name="note">
+                    <option value="">
+                        —Note—
+                    </option>
+                    {% for key, note in notes %}
+                        <option value="{{ note.id }}" {{ book.note is not null and book.note.id == note.id ? 'selected="true"' : '' }}
+                                autocomplete="off">
+                            {{ note.legend }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input value="{{ book.finished_at ? book.finished_at|date('Y-m-d') : '' }}" type="date"
+                       name="finished_at" placeholder="date"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <textarea name="summary" rows="20">{{ book.summary }}</textarea>
+            </label>
+        </div>
+        <div>
+            <button type="submit">OK</button>
+        </div>
+        <div>
+            <input type="submit" name="keep-editing" value="OK (keep editing)" />
+        </div>
+        <div>
+            <label>
+                Abandoned
+                <input type="date" name="abandonned_at"
+                       value="{{ book.abandonned_at ? book.abandonned_at|date('Y-m-d') : '' }}"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                Private book
+                <input type="checkbox" name="private_book" value="1" {{ book.private_book ? 'checked' : '' }}/>
+            </label>
+        </div>
+        <div>
+            <label>
+                Private summary
+                <input type="checkbox" name="private_summary" value="1" {{ book.private_summary ? 'checked' : '' }}/>
+            </label>
+        </div>
+        <div>
+            <button class="delete"><a href="/book/{{ book.slug }}/delete">Delete</a></button>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+{% include 'js/save-summary.js' %}
+{% endblock %}

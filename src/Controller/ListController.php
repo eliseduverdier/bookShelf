@@ -25,9 +25,12 @@ class ListController extends AbstractController
     #[Route('/books', name: 'list_books2')]
     public function index(Request $request): Response
     {
-        $booksForUser = $this->bookRepository->findBy([
-        'user' => $this->getUser()
-        ]);
+        if (!$this->getUser()) {
+            return $this->redirect('/login');
+        }
+
+        $booksForUser = $this->bookRepository->findForUser($this->getUser());
+
         return $this->render('list.html.twig', [
             'currentUser' => $this->getUser(),
             'books' => $booksForUser,

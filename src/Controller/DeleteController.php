@@ -5,45 +5,38 @@ namespace App\Controller;
 use App\Repository\BookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Service\Attribute\Required;
 
-class ViewController extends AbstractController
+class DeleteController extends AbstractController
 {
     #[Required]
     public BookRepository $bookRepository;
+    #[Required]
+    public EntityManagerInterface $em;
     #[Required]
     public TypeRepository $typeRepository;
     #[Required]
     public NoteRepository $noteRepository;
 
-    #[Route('/book/{slug}', name: 'view_book', methods: ['GET'])]
+    #[Route('/book/{slug}/delete', name: 'delete_book', methods: ['GET'])]
     public function index(Request $request, string $slug): Response
     {
         $book = $this->bookRepository->findOneBy(['slug' => $slug]);
 
-        if (!$book) {
+        try {
+            $this->bookRepository->delete($book);
+            return new RedirectResponse('/');
+        } catch (\Exception $e) {
             return $this->render('error.html.twig', [
                 'currentUser' => $this->getUser(),
-                'error' => "No book found with slug « $slug »"
+                'error' => "Error while deleting « $slug » : {$e->getMessage()}"
             ]);
         }
-
-        if ($this->getUser()) {
-            return $this->render('edit.html.twig', [
-                'currentUser' => $this->getUser(),
-                'book' => $book,
-                'types' => $this->typeRepository->findAll(),
-                'notes' => $this->noteRepository->findAll(),
-            ]);
-        }
-
-        return $this->render('view.html.twig', [
-            'currentUser' => $this->getUser(),
-            'book' => $book
-        ]);
     }
 }

@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends('base.html.twig') %}
 
-{% block title %}🤷 Login{% endblock %}
+{% block title %}🤷 Sign up{% endblock %}
 
 {% block content %}
     {% if error %}
-        <div>{{ error }}</div>
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form method="POST" name="{{ path('login') }}" id="login">
+    <form method="POST" name="{{ path('save_user') }}" id="login">
         <div>
             <label>
                 <input value="{{ last_username }}" type="text" name="_username" placeholder="username" />
@@ -20,12 +20,9 @@
             </label>
         </div>
         <div>
-            <button type="submit">OK</button>
+            <button type="submit">Sign up</button>
         </div>
     </form>
-
-
-    Or <a href="/signup">sign up</a>
 
 
     <script>

@@ -19,14 +19,19 @@ class SignupController extends AbstractController
     #[Route('/signup', name: 'signup', methods: ['GET'])]
     public function signup(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('login/index.html.twig', [
+        return $this->render('user/signup.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
     }
 
     #[Route('/signup', name: 'save_user', methods: ['POST'])]
-    public function saveUser(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    public function saveUser(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager,
+        Security $security,
+    ): Response
     {
         $username = $request->request->get('_username');
         $user = new User($username);
@@ -37,6 +42,8 @@ class SignupController extends AbstractController
 
         $entityManager->persist($user);
         $entityManager->flush();
+
+        $security->login($user);
 
         return $this->redirect('/');
     }

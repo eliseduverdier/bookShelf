@@ -1,16 +1,16 @@
-{% extends('base.html.twig') %}
+{% extends 'base.html.twig' %}
 
-{% block title %}🤷 Sign up{% endblock %}
+{% block title %}🤷 Login{% endblock %}
 
-{% block body %}
+{% block content %}
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div>{{ error }}</div>
     {% endif %}
 
-    <form method="POST" name="{{ path('save_user') }}" id="login">
+    <form method="POST" name="{{ path('login') }}" id="login">
         <div>
             <label>
-                <input value="{{ last_username }}" type="text" name="_username" placeholder="username" />
+                <input value="{{ lastUsername }}" type="text" name="_username" placeholder="username" />
             </label>
         </div>
         <div>
@@ -20,14 +20,17 @@
             </label>
         </div>
         <div>
-            <button type="submit">Sign up</button>
+            <button type="submit">OK</button>
         </div>
     </form>
 
 
+    Or <a href="/signup">sign up</a>
+
+
     <script>
         document.querySelector('.see-password').addEventListener('click', function() {
-            var password = document.querySelector('input[name="password"]');
+            var password = document.querySelector('input[name="_password"]');
             if (password.getAttribute('type') === 'password') {
                 password.setAttribute('type', 'text');
             } else {

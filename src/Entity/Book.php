@@ -22,7 +22,7 @@ class Book
     #[ORM\Column(type: 'string')]
     public string $slug;
     #[ORM\Column(type: 'string', nullable: true)]
-    public string $summary;
+    public ?string $summary = '';
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     public bool $private_book;
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
@@ -52,8 +52,8 @@ class Book
         Note $note,
         \DateTime $finished_at,
     ){
+        $this->slug = Utils::slugify("{$user->getUserIdentifier()}_{$title}_$author");
         $this->user = $user;
-        $this->slug = Utils::slugify("{$title}_$author");
         $this->title = $title;
         $this->author = $author;
         $this->type = $type;

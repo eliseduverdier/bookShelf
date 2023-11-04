@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected string $password;
 
     #[ORM\Column(type: 'datetime')]
-    protected \DateTime $lastConnectedAt;
+    public \DateTime $lastConnectedAt;
 
     public function __construct($username)
     {
@@ -61,17 +61,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-        return $this;
-    }
-
-    public function getLastConnectedAt(): string
-    {
-        return $this->lastConnectedAt;
-    }
-
-    public function setLastConnectedAt(string $lastConnectedAt): self
-    {
-        $this->lastConnectedAt = $lastConnectedAt;
         return $this;
     }
 
