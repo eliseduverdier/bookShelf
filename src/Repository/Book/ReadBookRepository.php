@@ -50,6 +50,7 @@ class ReadBookRepository extends ServiceEntityRepository
         }
 
         $query
+            ->addOrderBy('b.abandonned_at', 'asc')
             ->addOrderBy('currentlyReading', 'desc')
             ->addOrderBy('b.finished_at', 'desc');
 
@@ -82,7 +83,14 @@ class ReadBookRepository extends ServiceEntityRepository
             ->where('b.user = :user')->setParameter('user', $user)
             ->groupBy('b.type')
             ->orderBy('countbooks', 'desc');
-        return $query->getQuery()->getResult();
+
+        $result = $query->getQuery()->getResult();
+        $total = array_sum(array_column($result, 'countbooks'));
+        $percents = [];
+        foreach ($result as $count) {
+            $percents[$count['name']] = (int)(($count['countbooks'] * 100) / $total);
+        }
+        return $percents;
     }
 
     public function getBookCountByNote(User $user): array
@@ -97,6 +105,12 @@ class ReadBookRepository extends ServiceEntityRepository
             ->groupBy('b.note')
             ->orderBy('countbooks', 'desc');
 
-        return $query->getQuery()->getResult();
+        $result = $query->getQuery()->getResult();
+        $total = array_sum(array_column($result, 'countbooks'));
+        $percents = [];
+        foreach ($result as $count) {
+            $percents[$count['legend']] = (int)(($count['countbooks'] * 100) / $total);
+        }
+        return $percents;
     }
 }

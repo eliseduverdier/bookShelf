@@ -12,19 +12,19 @@
         </div>
 
         <div>
-            <h2>Most given notes</h2>
+            <h2>Most given notes (%)</h2>
             <ul>
-                {% for note in notes %}
-                    <li>{{ note.legend }} : {{ note.countbooks }}</li>
+                {% for note, count in notes %}
+                    <li>{{ note }} : {{ count }}</li>
                 {% endfor %}
             </ul>
         </div>
 
         <div>
-            <h2>Most read types</h2>
+            <h2>Most read types (%)</h2>
             <ul>
-                {% for type in types %}
-                    <li>{{ type.name }} : {{ type.countbooks }}</li>
+                {% for type, count in types %}
+                    <li>{{ type }} : {{ count }}</li>
                 {% endfor %}
             </ul>
         </div>

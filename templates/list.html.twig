@@ -40,7 +40,7 @@
                 <div class="finished-at-item">
                     {{ book.finished_at
                     ? book.finished_at|date('Y⋅m⋅d')
-                    : (book.abandonned_at ? 'abandonned' : 'currently reading') }}
+                    : (book.abandonned_at ? book.abandonned_at|date('Y⋅m⋅d') : 'currently reading') }}
                 </div>
                 <div>
                 </div>
