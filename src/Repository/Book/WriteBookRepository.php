@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Book;
 
 use App\Entity\Book;
+use App\Entity\User;
+use App\Repository\NoteRepository;
+use App\Repository\TypeRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 
-class BookRepository extends ServiceEntityRepository
+class WriteBookRepository extends ServiceEntityRepository
 {
     #[Required]
     public TypeRepository $typeRepository;
@@ -44,49 +46,7 @@ class BookRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function delete(?Book $book): void
-    {
-        $book->deletedAt = new \DateTime();
-        $this->getEntityManager()->persist($book);
-        $this->getEntityManager()->flush();
-    }
-
-    public function findForUser(
-        ?UserInterface $user,
-        array $order = [],
-        array $filter = [],
-    )
-    {
-        $query = $this->getEntityManager()
-            ->createQueryBuilder()
-            ->select('b')
-            ->addSelect('CASE WHEN b.finished_at IS NULL THEN 1 else 0 END AS HIDDEN currentlyReading')
-            ->from(Book::class, 'b')
-            ->where('b.user = :user')->setParameter('user', $user)
-            ->andWhere('b.deletedAt IS NULL')
-        ;
-
-        if ($filter) {
-            foreach ($filter as $field => $value) {
-                $query->andWhere($query->expr()->eq("b.$field", ':author'))
-                ->setParameter('author', $value);
-            }
-        };
-
-        if ($order) {
-            foreach ($order as $field => $way) {
-                $query->addOrderBy("b.$field", $way);
-            }
-        }
-
-        $query
-            ->addOrderBy('currentlyReading', 'desc')
-            ->addOrderBy('b.finished_at', 'desc');
-
-        return $query->getQuery()->execute();
-    }
-
-    public function save(InputBag $parameters, UserInterface $user)
+    public function save(InputBag $parameters, User $user)
     {
         $type = $this->typeRepository->find($parameters->get('type'));
         $note = $this->noteRepository->find($parameters->get('note'));
@@ -102,4 +62,10 @@ class BookRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function delete(?Book $book): void
+    {
+        $book->deletedAt = new \DateTime();
+        $this->getEntityManager()->persist($book);
+        $this->getEntityManager()->flush();
+    }
 }

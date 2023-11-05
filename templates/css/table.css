@@ -2,11 +2,13 @@
  *  LIST
  */
 ul, form {
-    width: 75vw;
     max-width: 1260px;
     list-style: none;
     padding: 0;
     margin: 0;
+}
+ul.book-list, form {
+    width: 75vw;
 }
 
 li {
@@ -16,7 +18,7 @@ li {
     white-space: nowrap;
 }
 
-li div, div.new-book form {
+li.books-list__item div, div.new-book form {
     display: inline-block;
     padding: 5px;
     margin:0;

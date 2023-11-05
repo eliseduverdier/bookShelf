@@ -21,7 +21,7 @@ class Book
     public string $author;
     #[ORM\Column(type: 'string')]
     public string $slug;
-    #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     public ?string $summary = '';
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     public bool $private_book;

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\BookRepository;
+use App\Repository\Book\ReadBookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +14,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class ViewController extends AbstractController
 {
     #[Required]
-    public BookRepository $bookRepository;
+    public ReadBookRepository $bookRepository;
     #[Required]
     public TypeRepository $typeRepository;
     #[Required]

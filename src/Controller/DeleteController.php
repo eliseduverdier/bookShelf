@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\BookRepository;
+use App\Repository\Book\ReadBookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +16,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 class DeleteController extends AbstractController
 {
     #[Required]
-    public BookRepository $bookRepository;
+    public ReadBookRepository $bookRepository;
     #[Required]
     public EntityManagerInterface $em;
     #[Required]

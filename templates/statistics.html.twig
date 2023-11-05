@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="grid">
+        <div>
+            <h2>Most read authors</h2>
+            <ul>
+                {% for author in authors %}
+                    <li>{{ author.author }} : {{ author.countbooks }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h2>Most given notes</h2>
+            <ul>
+                {% for note in notes %}
+                    <li>{{ note.legend }} : {{ note.countbooks }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h2>Most read types</h2>
+            <ul>
+                {% for type in types %}
+                    <li>{{ type.name }} : {{ type.countbooks }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

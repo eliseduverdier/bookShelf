@@ -25,6 +25,7 @@
             {% include 'css/login.css' %}
             {% include 'css/input.css' %}
             {% include 'css/nav.css' %}
+            {% include 'css/stats.css' %}
             {% include 'css/confettis.css' %}
         </style>
     {% endblock %}
@@ -44,7 +45,7 @@
 </nav>
 <main>
 
-    <h1>{% block mainTitle %}Books{% endblock %}</h1>
+    <h1>{% block mainTitle %}<a href="/">Books</a>{% endblock %}</h1>
 
     {% block content %}{% endblock %}
 
