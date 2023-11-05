@@ -3,33 +3,21 @@
 {% block title %}🤷 Login{% endblock %}
 
 {% block content %}
+    <p><a href="/">⬅ Back</a></p>
 
-    <form method="POST" name="{{ path('settings') }}" id="settings">
+    <form method="POST" action="{{ path('settings_color') }}" id="settings">
         <div>
             <label>
                 Change app color
-                <input type="color" name="_color" placeholder="color" />
+                <input type="color" name="color" placeholder="color" />
             </label>
         </div>
-        <hr>
         <div>
             <button type="submit">Save</button>
         </div>
     </form>
 
+    <hr>
 
-    Or <a href="/signup">sign up</a>
-
-
-    <script>
-        document.querySelector('.see-password').addEventListener('click', function() {
-            var password = document.querySelector('input[name="_password"]');
-            if (password.getAttribute('type') === 'password') {
-                password.setAttribute('type', 'text');
-            } else {
-                password.setAttribute('type', 'password');
-            }
-        });
-    </script>
 
 {% endblock %}

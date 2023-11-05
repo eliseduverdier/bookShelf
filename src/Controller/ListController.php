@@ -28,8 +28,12 @@ class ListController extends AbstractController
         if (!$this->getUser()) {
             return $this->redirect('/login');
         }
-
-        $booksForUser = $this->bookRepository->findForUser($this->getUser());
+        $order = $request->query->getIterator()->getArrayCopy();
+        $booksForUser = $this->bookRepository->findForUser(
+            $this->getUser(),
+            $order['order'] ?? [],
+            $order['filter'] ?? []
+        );
 
         return $this->render('list.html.twig', [
             'currentUser' => $this->getUser(),

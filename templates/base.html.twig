@@ -9,6 +9,13 @@
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📚</text></svg>">
     {% block stylesheets %}
         <style>
+            {% set hasFavColor = currentUser is defined and currentUser is not empty and currentUser.favColor is not empty %}
+            :root {
+                --bg-color: #fff;
+                --fg-color: {{ hasFavColor ? currentUser.favColor : '#04c062' }};
+                --link-color: black;
+                --fun-color: {{ hasFavColor ? currentUser.favColor|lighter(50) : '#C3FF0D' }};
+            }
             {% include 'css/base.css' %}
             {% include 'css/components.css' %}
             {% include 'css/table.css' %}
@@ -17,7 +24,7 @@
             {% include 'css/notes.css' %}
             {% include 'css/login.css' %}
             {% include 'css/input.css' %}
-            {% include 'css/artsy.css' %}
+            {% include 'css/nav.css' %}
             {% include 'css/confettis.css' %}
         </style>
     {% endblock %}
@@ -25,10 +32,11 @@
     {% endblock %}
 </head>
 <body>
+
 <nav>
     {% block nav %}
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="/settings">⚙</a>  Hello {{ currentUser.username }} !
+        {% if currentUser is defined and currentUser is not empty %}
+            {% include 'user/nav.html.twig' %}
         {% else %}
             <a href="/login">Login</a>
         {% endif %}

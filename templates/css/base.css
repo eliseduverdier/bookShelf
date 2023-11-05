@@ -1,9 +1,9 @@
-:root {
+/* :root {
     --bg-color: #fff;
     --fg-color: #04c062;
     --link-color: black;
     --fun-color: #C3FF0D;
-}
+} */
 
 [data-theme="dark"] {
     --bg-color: #222;
@@ -21,7 +21,7 @@ html {
 body {
     margin: 10px;
 }
-
+.fun{color: var(--fun-color);}
 a {
     color: var(--link-color);
     border-bottom: 3px solid var(--fg-color);
@@ -59,10 +59,5 @@ nav {
 }
 
 h1 {
-    text-shadow:
-             4px  4px 0 var(--bg-color),
-            -4px -4px 0 var(--bg-color),
-             4px -4px 0 var(--bg-color),
-            -4px  4px 0 var(--bg-color)
-;
+    border-bottom: 10px solid var(--fun-color);
 }

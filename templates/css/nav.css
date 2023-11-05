@@ -1,0 +1,15 @@
+/**
+ * Show menu on hover
+ */
+ul.nav-sub-menu-user {
+    background: white;
+    border: 3px solid var(--fg-color);
+    display: none;
+    position: relative;
+    right: 0;
+    top: 10px;
+    width: 100px;
+}
+div.nav-settings:hover ul.nav-sub-menu-user {
+    display: block;
+}

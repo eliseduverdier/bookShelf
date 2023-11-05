@@ -28,7 +28,7 @@ class Book
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     public bool $private_summary;
     #[ORM\Column(type: 'datetime', nullable: true)]
-    public ?\DateTime $finished_at;
+    public ?\DateTime $finished_at = null;
     #[ORM\Column(type: 'datetime', nullable: true)]
     public ?\DateTime $abandonned_at;
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -50,7 +50,7 @@ class Book
         string $author,
         Type $type,
         Note $note,
-        \DateTime $finished_at,
+        ?\DateTime $finished_at = null,
     ){
         $this->slug = Utils::slugify("{$user->getUserIdentifier()}_{$title}_$author");
         $this->user = $user;

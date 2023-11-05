@@ -21,6 +21,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     protected string $password;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    public string $favColor;
+
     #[ORM\Column(type: 'datetime')]
     public \DateTime $lastConnectedAt;
 

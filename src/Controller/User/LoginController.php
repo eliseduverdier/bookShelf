@@ -44,4 +44,11 @@ class LoginController extends AbstractController
             ]);
         }
     }
+
+    #[Route('/logout', name: 'logout', methods: ['GET'])]
+    public function logoutUser(Security $security): Response
+    {
+        $security->logout(false);
+        return $this->redirect('/');
+    }
 }
