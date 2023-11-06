@@ -1,0 +1,28 @@
+    <li class="books-list__item books-list__title">
+        <div class="title-item">
+            title
+        </div>
+        <div class="author-item">
+            author
+            {% if filter.author is defined %} <a href="/">×</a> {% endif %}
+            {% if sort is defined and sort[0] == 'author' %}
+                <a href="/">×</a>
+            {% else %}
+                <a href="?order[author]=desc">▼</a>
+            {% endif %}
+        </div>
+        <div class="type-item">
+            type
+            {% if filter.type is defined %} <a href="/">×</a> {% endif %}
+        </div>
+        <div class="note-item">
+            note
+            {% if filter.note is defined %} <a href="/">×</a> {% endif %}
+            {% if sort is defined and sort[0] == 'note' %} <a href="/">×</a>
+            {% else %} <a href="?order[note]=desc">▼</a>
+            {% endif %}
+        </div>
+        <div class="finished-at-item">
+            finished
+        </div>
+    </li>

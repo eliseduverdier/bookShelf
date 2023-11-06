@@ -10,6 +10,7 @@ input, button, select, textarea {
     border: 1px solid var(--fg-color);
     padding: 5px;
     font: normal 14px monospace;
+    border-radius: 5px;
 }
 
 input[type=text], input[type=password], select, textarea {

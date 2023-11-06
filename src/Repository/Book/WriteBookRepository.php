@@ -46,7 +46,7 @@ class WriteBookRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
-    public function save(InputBag $parameters, User $user)
+    public function save(InputBag $parameters, ?User $user)
     {
         $type = $this->typeRepository->find($parameters->get('type'));
         $note = $this->noteRepository->find($parameters->get('note'));

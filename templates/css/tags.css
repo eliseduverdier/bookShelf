@@ -8,6 +8,7 @@
     --tags__BD: #d6770a;
     --tags__kids: #E05215;
     --tags__theater: #93078e;
+    --tags__manual: #555555;
 }
 
 [data-theme="dark"] {
@@ -20,9 +21,10 @@
     --tags__BD: #fa8b0c;
     --tags__kids: #FB5C18;
     --tags__theater: #d355cb;
+    --tags__manual: #aaaaaa;
 }
 
-.essay, .novel, .poetry, .biography, .art, .BD, .kids, .theater {
+.essay, .novel, .poetry, .biography, .art, .BD, .kids, .theater, .manual {
     color: var(--tags__text);
 }
 
@@ -34,3 +36,4 @@
 .BD { background-color: var(--tags__BD); }
 .kids { background-color: var(--tags__kids); }
 .theater { background-color: var(--tags__theater); }
+.manual { background-color: var(--tags__manual); }

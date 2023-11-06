@@ -25,7 +25,7 @@
                 <select name="type">
                     <option value="">—Type—</option>
                     {% for type in types %}
-                        <option value="{{ type.id }}" {{ book.type.id == type.id ? 'selected="true"' : '' }}
+                        <option value="{{ type.id }}" {{ book.type is not null and book.type.id == type.id ? 'selected="true"' : '' }}
                                 autocomplete="off"> {{ type.name }} </option>
                     {% endfor %}
                 </select>

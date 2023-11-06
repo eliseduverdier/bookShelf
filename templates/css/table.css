@@ -79,3 +79,10 @@ div.new-book form div {
     display: inline-block;
     padding: 5px;
 }
+
+/* FIRST LINE */
+.books-list__title div {
+    background: var(--fg-color);
+    color: var(--bg-color);
+    border-radius: 5px;
+}

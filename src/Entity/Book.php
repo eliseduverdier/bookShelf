@@ -38,9 +38,9 @@ class Book
     #[ORM\Column(type: 'datetime', nullable: true)]
     public \DateTime $updatedAt;
     #[ORM\ManyToOne(targetEntity: Type::class)]
-    public Type $type;
+    public ?Type $type;
     #[ORM\ManyToOne(targetEntity: Note::class)]
-    public Note $note;
+    public ?Note $note;
     #[ORM\ManyToOne(targetEntity: User::class)]
     public UserInterface $user;
 
@@ -48,8 +48,8 @@ class Book
         UserInterface $user,
         string $title,
         string $author,
-        Type $type,
-        Note $note,
+        ?Type $type,
+        ?Note $note,
         ?\DateTime $finished_at = null,
     ){
         $this->slug = Utils::slugify("{$user->getUserIdentifier()}_{$title}_$author");
