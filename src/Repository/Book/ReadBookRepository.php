@@ -57,7 +57,7 @@ class ReadBookRepository extends ServiceEntityRepository
         return $query->getQuery()->execute();
     }
 
-    public function getMostReadAuthors(User $user): array
+    public function getMostReadAuthors(?User $user): array
     {
         $query = $this->getEntityManager()
             ->createQueryBuilder()
@@ -72,7 +72,7 @@ class ReadBookRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function getBookCountByType(User $user): array
+    public function getBookCountByType(?User $user): array
     {
         $query = $this->getEntityManager()
             ->createQueryBuilder()
@@ -93,17 +93,17 @@ class ReadBookRepository extends ServiceEntityRepository
         return $percents;
     }
 
-    public function getBookCountByNote(User $user): array
+    public function getBookCountByNote(?User $user): array
     {
         $query = $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('n.legend')
+            ->select('n.legend, n.name')
             ->addSelect('COUNT(b.title) AS countbooks')
             ->from(Book::class, 'b')
             ->join('b.note', 'n')
             ->where('b.user = :user')->setParameter('user', $user)
             ->groupBy('b.note')
-            ->orderBy('countbooks', 'desc');
+            ->orderBy('n.id', 'desc');
 
         $result = $query->getQuery()->getResult();
         $total = array_sum(array_column($result, 'countbooks'));

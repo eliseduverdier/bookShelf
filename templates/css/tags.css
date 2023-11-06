@@ -6,6 +6,7 @@
     --tags__biography: #8eac50;
     --tags__art: #d2ad12;
     --tags__BD: #d6770a;
+    --tags__kids: #E05215;
     --tags__theater: #93078e;
 }
 
@@ -17,10 +18,11 @@
     --tags__biography: #a3b76d;
     --tags__art: #e0c12b;
     --tags__BD: #fa8b0c;
+    --tags__kids: #FB5C18;
     --tags__theater: #d355cb;
 }
 
-.essay, .novel, .poetry, .biography, .art, .BD, .theater {
+.essay, .novel, .poetry, .biography, .art, .BD, .kids, .theater {
     color: var(--tags__text);
 }
 
@@ -30,4 +32,5 @@
 .biography { background-color: var(--tags__biography); }
 .art { background-color: var(--tags__art); }
 .BD { background-color: var(--tags__BD); }
+.kids { background-color: var(--tags__kids); }
 .theater { background-color: var(--tags__theater); }

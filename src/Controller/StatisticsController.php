@@ -18,6 +18,10 @@ class StatisticsController extends AbstractController
     #[Route('/statistics', name: 'statistics')]
     public function index(Request $request): Response
     {
+        if (null === $this->getUser()) {
+            $this->redirect('/');
+        }
+
         $authors = $this->bookRepository->getMostReadAuthors($this->getUser());
         $notes = $this->bookRepository->getBookCountByNote($this->getUser());
         $types = $this->bookRepository->getBookCountByType($this->getUser());

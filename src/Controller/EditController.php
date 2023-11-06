@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\Book\ReadBookRepository;
+use App\Repository\Book\WriteBookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +17,9 @@ use Symfony\Contracts\Service\Attribute\Required;
 class EditController extends AbstractController
 {
     #[Required]
-    public ReadBookRepository $bookRepository;
+    public ReadBookRepository $readBookRepository;
+    #[Required]
+    public WriteBookRepository $writeBookRepository;
     #[Required]
     public EntityManagerInterface $em;
     #[Required]
@@ -27,10 +30,10 @@ class EditController extends AbstractController
     #[Route('/book/{slug}', name: 'edit_book', methods: ['POST'])]
     public function index(Request $request, string $slug): Response
     {
-        $book = $this->bookRepository->findOneBy(['slug' => $slug]);
+        $book = $this->readBookRepository->findOneBy(['slug' => $slug]);
 
         try {
-            $this->bookRepository->edit($book, $request->request);
+            $this->writeBookRepository->edit($book, $request->request);
             return new RedirectResponse('/');
         } catch (\Exception $e) {
             return $this->render('error.html.twig', [
