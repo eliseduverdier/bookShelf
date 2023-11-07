@@ -22,15 +22,10 @@ class StatisticsController extends AbstractController
             $this->redirect('/');
         }
 
-        $authors = $this->bookRepository->getMostReadAuthors($this->getUser());
-        $notes = $this->bookRepository->getBookCountByNote($this->getUser());
-        $types = $this->bookRepository->getBookCountByType($this->getUser());
-
         return $this->render('statistics.html.twig', [
-            'currentUser' => $this->getUser(),
-            'authors' => $authors,
-            'notes' => $notes,
-            'types' => $types,
+            'authors' => $this->bookRepository->getMostReadAuthors($this->getUser()),
+            'notes' => $this->bookRepository->getBookCountByNote($this->getUser()),
+            'types' => $this->bookRepository->getBookCountByType($this->getUser()),
         ]);
     }
 }

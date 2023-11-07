@@ -17,9 +17,7 @@ class SettingsController extends AbstractController
     #[Route('/settings', name: 'settings')]
     public function index(Request $request): Response
     {
-        return $this->render('user/settings.html.twig', [
-            'currentUser' => $this->getUser(),
-        ]);
+        return $this->render('user/settings.html.twig');
     }
 
     #[Route('/settings/color', name: 'settings_color', methods: ['POST'])]

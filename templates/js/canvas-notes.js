@@ -2,14 +2,16 @@ const notesCanvas = document.getElementById('notes')
 const ctx = notesCanvas.getContext('2d');
 
 const colors = [
-'#6a5392',
-'#088395',
-'#05bfdb',
-'#8eac50',
-'#d2ad12',
-'#d6770a',
-'#E05215',
-'#93078e',
+    '#6a5392',
+    '#088395',
+    '#05bfdb',
+    '#8eac50',
+    '#d2ad12',
+    '#d6770a',
+    '#e05215',
+    '#93078e',
+    '#555555',
+
 ];
 /* DIAGRAM */
 ctx.font = '14px monospace';
@@ -31,17 +33,25 @@ for (let note in notes) {
     /* LEGEND */
     ctx.fillStyle = colors[colorCount];
     ctx.textAlign = 'center';
-    ctx.lineWidth = 2;
+    ctx.lineWidth=2
     ctx.strokeStyle = 'white';
 
     place = (start + end) / 2
-    x=notesCanvas.width / 2 + notesCanvas.width / 2.5 * Math.cos(place);
-    y=notesCanvas.height / 2 + notesCanvas.width / 2.5 * Math.sin(place)
+    x = notesCanvas.width / 2 + notesCanvas.width / 2.5 * Math.cos(place);
+    y = notesCanvas.height / 2 + notesCanvas.width / 2.5 * Math.sin(place)
     ctx.strokeText(note, x, y,);
     ctx.fillText(note, x, y,);
     colorCount++;
 
-    start += percentToRadiant(notes[note]);
+    /* COUNT */
+    ctx.fillStyle = 'white';
+    ctx.fillText(
+        Math.round(notes[note])+'%',
+        notesCanvas.width / 2 + notesCanvas.width / 6 * Math.cos(place),
+        notesCanvas.height / 2 + notesCanvas.width / 6 * Math.sin(place)
+    )
+
+    start += percentToRadiant(notes[note])
 }
 
 function percentToRadiant(percent) {

@@ -38,23 +38,7 @@ class ListController extends AbstractController
         );
 
         return $this->render('list.html.twig', [
-            'currentUser' => $this->getUser(),
             'books' => $booksForUser,
-            'types' => $this->typeRepository->findAll(),
-            'notes' => $this->noteRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/user/{username}', name: 'list_books_for_user')]
-    public function listForUser(Request $request, string $username): Response
-    {
-        $user = $this->userRepository->findOneBy(['username' => $username]);
-        $booksForUser = $this->bookRepository->findForUser($user);
-
-        return $this->render('list.html.twig', [
-            'currentUser' => $this->getUser(),
-            'books' => $booksForUser,
-            'user' => $username,
             'types' => $this->typeRepository->findAll(),
             'notes' => $this->noteRepository->findAll(),
         ]);

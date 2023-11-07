@@ -27,3 +27,9 @@ button.delete a {
 p#summary {
     max-width: 600px;
 }
+
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}

@@ -1,0 +1,9 @@
+<div>
+    <h2>Most given notes (%)</h2>
+    <canvas id="notes" width="400" height="400"></canvas>
+    <ul>
+        {% for note, count in notes %}
+            <li>{{ note }} : {{ count }}</li>
+        {% endfor %}
+    </ul>
+</div>

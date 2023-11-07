@@ -21,20 +21,34 @@ class ViewController extends AbstractController
     public NoteRepository $noteRepository;
 
     #[Route('/book/{slug}', name: 'view_book', methods: ['GET'])]
-    public function index(Request $request, string $slug): Response
+    public function view(Request $request, string $slug): Response
     {
         $book = $this->bookRepository->findOneBy(['slug' => $slug]);
 
         if (!$book) {
             return $this->render('error.html.twig', [
-                'currentUser' => $this->getUser(),
+                'error' => "No book found with slug « $slug »"
+            ]);
+        }
+
+        return $this->render('view.html.twig', [
+            'book' => $book
+        ]);
+    }
+
+    #[Route('/book/{slug}/edit', name: 'view_edit_book', methods: ['GET'])]
+    public function edit(Request $request, string $slug): Response
+    {
+        $book = $this->bookRepository->findOneBy(['slug' => $slug]);
+
+        if (!$book) {
+            return $this->render('error.html.twig', [
                 'error' => "No book found with slug « $slug »"
             ]);
         }
 
         if ($this->getUser()) {
             return $this->render('edit.html.twig', [
-                'currentUser' => $this->getUser(),
                 'book' => $book,
                 'types' => $this->typeRepository->findAll(),
                 'notes' => $this->noteRepository->findAll(),
@@ -42,7 +56,6 @@ class ViewController extends AbstractController
         }
 
         return $this->render('view.html.twig', [
-            'currentUser' => $this->getUser(),
             'book' => $book
         ]);
     }

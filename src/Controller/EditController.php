@@ -27,17 +27,19 @@ class EditController extends AbstractController
     #[Required]
     public NoteRepository $noteRepository;
 
-    #[Route('/book/{slug}', name: 'edit_book', methods: ['POST'])]
+    #[Route('/book/{slug}/edit', name: 'edit_book', methods: ['POST'])]
     public function index(Request $request, string $slug): Response
     {
         $book = $this->readBookRepository->findOneBy(['slug' => $slug]);
+        if ($this->getUser() && $book->user !== $this->getUser()) {
+            $this->redirectToRoute('list_books');
+        }
 
         try {
             $this->writeBookRepository->edit($book, $request->request);
             return new RedirectResponse('/');
         } catch (\Exception $e) {
             return $this->render('error.html.twig', [
-                'currentUser' => $this->getUser(),
                 'error' => "Error while editing « $slug » : {$e->getMessage()}"
             ]);
         }

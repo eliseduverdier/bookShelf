@@ -69,7 +69,9 @@ class ReadBookRepository extends ServiceEntityRepository
             ->having('countbooks > 1')
             ->orderBy('countbooks', 'desc');
 
-        return $query->getQuery()->getResult();
+        $results = $query->getQuery()->getResult();
+
+        return array_slice($results, 0, 10);
     }
 
     public function getBookCountByType(?User $user): array
@@ -88,7 +90,7 @@ class ReadBookRepository extends ServiceEntityRepository
         $total = array_sum(array_column($result, 'countbooks'));
         $percents = [];
         foreach ($result as $count) {
-            $percents[$count['name']] = (int)(($count['countbooks'] * 100) / $total);
+            $percents[$count['name']] = ceil(($count['countbooks'] * 100) / $total);
         }
         return $percents;
     }

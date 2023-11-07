@@ -23,13 +23,19 @@ for (let type in types) {
     ctxType.fillStyle = colors[colorCountType];
     ctxType.textAlign = 'center';
     ctxType.lineWidth = 2;
-    ctxType.strokeStyle = 'white';
 
     placeType = (startType + endType) / 2
     xType = typesCanvas.width / 2 + notesCanvas.width / 2.5 * Math.cos(placeType);
     yType = typesCanvas.height / 2 + notesCanvas.width / 2.5 * Math.sin(placeType);
-    ctxType.strokeText(type, xType, yType);
     ctxType.fillText(type, xType, yType);
+
+    /* COUNT */
+    ctxType.fillStyle = 'white';
+    ctxType.fillText(
+        Math.round(types[type])+'%',
+        typesCanvas.width / 2 + typesCanvas.width / 6 * Math.cos(placeType),
+        typesCanvas.height / 2 + typesCanvas.width / 6 * Math.sin(placeType))
+
     colorCountType++;
 
     startType += percentToRadiant(types[type]);

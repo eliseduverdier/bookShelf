@@ -1,6 +1,6 @@
 <div class="nav-settings">
 
-    <img src="/img/gear.png" alt="settings" width="24" height="24"></a> Hello {{ currentUser.username }} !
+    <img src="/img/gear.png" alt="settings" width="24" height="24"></a> Hello {{ app.user.username }} !
     <ul class="nav-sub-menu-user">
         <li>
             <a href="{{ path('logout') }}">Logout</a>
@@ -10,6 +10,9 @@
         </li>
         <li>
             <a href="{{ path('statistics') }}">Stats</a>
+        </li>
+        <li>
+            <a href="{{ path('users') }}">Users</a>
         </li>
     </ul>
 </div>

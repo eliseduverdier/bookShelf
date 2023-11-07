@@ -16,7 +16,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public int $id;
 
     #[ORM\Column(type: 'string')]
-    protected string $username;
+    public string $username;
 
     #[ORM\Column(type: 'string')]
     protected string $password;
@@ -27,6 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime')]
     public \DateTime $lastConnectedAt;
 
+    private array $roles = [];
+
     public function __construct($username)
     {
         $this->username = $username;
@@ -36,23 +38,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    public function getusername(): string
-    {
-        return $this->username;
-    }
-
-    public function setusername(string $username): self
-    {
-        $this->username = $username;
-        return $this;
     }
 
     public function getPassword(): string
@@ -69,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [];
+        return array_unique(array_merge($this->roles, ['ROLE_USER']));
     }
 
     public function eraseCredentials(): void

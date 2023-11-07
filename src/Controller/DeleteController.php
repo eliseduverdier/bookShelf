@@ -37,7 +37,6 @@ class DeleteController extends AbstractController
             return new RedirectResponse('/');
         } catch (\Exception $e) {
             return $this->render('error.html.twig', [
-                'currentUser' => $this->getUser(),
                 'error' => "Error while deleting « $slug » : {$e->getMessage()}"
             ]);
         }

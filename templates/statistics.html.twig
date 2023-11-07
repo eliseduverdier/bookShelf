@@ -2,34 +2,9 @@
 
 {% block content %}
     <div class="grid">
-        <div>
-            <h2>Most read authors</h2>
-            <ul>
-                {% for author in authors %}
-                    <li>{{ author.author }} : {{ author.countbooks }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div>
-            <h2>Most given notes (%)</h2>
-            <canvas id="notes" width="400" height="400"></canvas>
-            <ul>
-                {% for note, count in notes %}
-                    <li>{{ note }} : {{ count }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div>
-            <h2>Most read types (%)</h2>
-            <canvas id="types" width="400" height="400"></canvas>
-            <ul>
-                {% for type, count in types %}
-                    <li>{{ type }} : {{ count }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% include 'statistics/authors-part.html.twig' with authors%}
+        {% include 'statistics/notes-part.html.twig' with authors%}
+        {% include 'statistics/types-part.html.twig' with authors%}
     </div>
 <script type="text/javascript">
     const notes = {{ notes|json_encode|raw }};

@@ -8,6 +8,7 @@
 
 {% block content %}
     <p><a href="/">⬅ Back</a></p>
+    <div class="edit-grid">
 
     <form method="POST" name="?action=edit&slug={{ book.slug }}" id="edit" data-slug="{{ book.slug }}">
         <div>
@@ -22,7 +23,7 @@
         </div>
         <div>
             <label>
-                <select name="type">
+                <select name="type" class="{{ book.type.name }}">
                     <option value="">—Type—</option>
                     {% for type in types %}
                         <option value="{{ type.id }}" {{ book.type is not null and book.type.id == type.id ? 'selected="true"' : '' }}
@@ -87,9 +88,15 @@
         </div>
     </form>
 
+    <canvas width="200" height="300" id="book-cover"></canvas>
+
+    </div>
+
 {% endblock %}
 
 {% block javascript %}
 {{ parent() }}
-{#{% include 'js/save-summary.js' %}#}
+{% include 'js/save-summary.js' %}
+    {% include 'js/canvas-cover-edit.js' %}
+
 {% endblock %}
