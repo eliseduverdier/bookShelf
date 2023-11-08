@@ -1,0 +1,2 @@
+
+RewriteCond '^(.*)$' '/public/$1'

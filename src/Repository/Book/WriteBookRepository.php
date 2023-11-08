@@ -34,8 +34,8 @@ class WriteBookRepository extends ServiceEntityRepository
             : null;
         $book->summary = $parameters->get('summary');
         $book->abandonned_at = $parameters->get('abandonned');
-        $book->private_book = $parameters->get('private_book', 0);
-        $book->private_summary = $parameters->get('private_summary', 0);
+        $book->is_private = $parameters->get('private_book', 0);
+        $book->has_private_summary = $parameters->get('private_summary', 0);
 
         $type = $this->typeRepository->find($parameters->get('type'));
         $book->type = $type;

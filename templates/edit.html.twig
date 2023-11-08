@@ -23,7 +23,7 @@
         </div>
         <div>
             <label>
-                <select name="type" class="{{ book.type.name }}">
+                <select name="type" class="{{ book.type ? book.type.name : ''}}">
                     <option value="">—Type—</option>
                     {% for type in types %}
                         <option value="{{ type.id }}" {{ book.type is not null and book.type.id == type.id ? 'selected="true"' : '' }}
@@ -74,13 +74,13 @@
         <div>
             <label>
                 Private book
-                <input type="checkbox" name="private_book" value="1" {{ book.private_book ? 'checked' : '' }}/>
+                <input type="checkbox" name="private_book" value="1" {{ book.is_private ? 'checked' : '' }}/>
             </label>
         </div>
         <div>
             <label>
                 Private summary
-                <input type="checkbox" name="private_summary" value="1" {{ book.private_summary ? 'checked' : '' }}/>
+                <input type="checkbox" name="private_summary" value="1" {{ book.has_private_summary ? 'checked' : '' }}/>
             </label>
         </div>
         <div>

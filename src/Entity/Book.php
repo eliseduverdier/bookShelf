@@ -24,9 +24,9 @@ class Book
     #[ORM\Column(type: 'text', nullable: true)]
     public ?string $summary = '';
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    public bool $private_book;
+    public bool $is_private;
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    public bool $private_summary;
+    public bool $has_private_summary;
     #[ORM\Column(type: 'datetime', nullable: true)]
     public ?\DateTime $finished_at = null;
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -59,8 +59,8 @@ class Book
         $this->type = $type;
         $this->note = $note;
         $this->finished_at = $finished_at;
-        $this->private_book = false;
-        $this->private_summary = false;
+        $this->is_private = false;
+        $this->has_private_summary = false;
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }

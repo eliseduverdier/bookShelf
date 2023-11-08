@@ -32,9 +32,12 @@ class UsersController extends AbstractController
     {
         $user = $this->userRepository->findOneBy(['username' => $username]);
 
+        $allBooks =  $this->bookRepository->findForUser($user);
+        $privateBooks = array_filter($allBooks, fn ($book) => $book->is_private === false);
+
         return $this->render('list-for-user.html.twig', [
             'user' => $user,
-            'books' => $this->bookRepository->findForUser($user),
+            'books' => $privateBooks,
             'authorsStatistics' => $this->bookRepository->getMostReadAuthors($user),
             'notesStatistics' => $this->bookRepository->getBookCountByNote($user),
             'typesStatistics' => $this->bookRepository->getBookCountByType($user),
