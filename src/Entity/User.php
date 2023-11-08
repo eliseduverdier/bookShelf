@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected string $password;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    public string $favColor;
+    public ?string $favColor = null;
 
     #[ORM\Column(type: 'datetime')]
     public \DateTime $lastConnectedAt;
@@ -66,4 +66,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->username;
     }
+
+    public function getFavColor(): string
+    {
+        return $this->favColor;
+    }
+
 }

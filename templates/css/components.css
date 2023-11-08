@@ -3,3 +3,13 @@
     padding: 0 6px;
     white-space: nowrap;
 }
+
+.card {
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.card-background {
+    background: var(--fg-color);
+    color: var(--bg-color);
+}

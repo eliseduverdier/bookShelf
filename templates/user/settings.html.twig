@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}🤷 Login{% endblock %}
+{% block title %}Settings{% endblock %}
 
 {% block content %}
-    <p><a href="/">⬅ Back</a></p>
 
     <form method="POST" action="{{ path('settings_color') }}" id="settings">
         <div>
@@ -13,7 +12,7 @@
             </label>
         </div>
         <div>
-            <button type="submit">Save</button>
+            <button type="submit" class="button-small">Save</button>
         </div>
     </form>
 

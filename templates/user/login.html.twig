@@ -2,34 +2,54 @@
 
 {% block title %}🤷 Login{% endblock %}
 
+{% block mainTitle %}
+        Bookshelf
+{% endblock %}
+
 {% block content %}
+
+    <div class="align-center card">
+        <p>
+        « <em>Bookshelf</em> » is a website to store your list of read books.
+        </p>
+        <p>It also provide statistics on books types, notes, authors…, as well as other users’.</p>
+        <p>
+        <a href="{{ path('users') }}">See the users list</a>
+        </p>
+    </div>
+
+    <hr>
+
     {% if error %}
         <div>{{ error }}</div>
     {% endif %}
 
-    <form method="POST" name="{{ path('login') }}" id="login">
+    <form method="POST" name="{{ path('login') }}" id="login" class="card card-background align-center">
+        <div>log in</div>
         <div>
             <label>
-                <input value="{{ lastUsername }}" type="text" name="_username" placeholder="username" />
+                <input value="{{ lastUsername }}" type="text" name="_username" placeholder="username"/>
             </label>
         </div>
         <div>
             <label>
-                <input value="" type="password" name="_password" placeholder="password" />
+                <input value="" type="password" name="_password" placeholder="password"/>
                 <span class="see-password">(see)</span>
             </label>
         </div>
         <div>
             <button type="submit">OK</button>
         </div>
+        <div>
+            <a href="/signup">or sign up</a>
+        </div>
     </form>
 
 
-    Or <a href="/signup">sign up</a>
 
 
     <script>
-        document.querySelector('.see-password').addEventListener('click', function() {
+        document.querySelector('.see-password').addEventListener('click', function () {
             var password = document.querySelector('input[name="_password"]');
             if (password.getAttribute('type') === 'password') {
                 password.setAttribute('type', 'text');

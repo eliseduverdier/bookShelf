@@ -2,8 +2,6 @@ form#login {
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    background: var(--fg-color);
-    padding: 50px;
     margin: 0 auto;
 }
 

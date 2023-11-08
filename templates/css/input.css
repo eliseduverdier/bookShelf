@@ -17,6 +17,9 @@ input[type=text], input[type=password], input[type=date], button, select, textar
     width: 95%;
     margin: 5px 0;
 }
+.button-small {
+    width: auto;
+}
 
 input, select, textarea {
     background: var(--bg-color);

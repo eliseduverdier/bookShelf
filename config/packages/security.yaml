@@ -24,6 +24,7 @@ security:
          - { path: ^/user, roles: PUBLIC_ACCESS }
          - { path: ^/login, roles: PUBLIC_ACCESS }
          - { path: ^/signup, roles: PUBLIC_ACCESS }
+         - { path: ^/book/[a-z-]+$, roles: PUBLIC_ACCESS } # other’s books summary
          - { path: ^/, roles: [ROLE_USER] }
 #         - { path: ^/book, roles: [ROLE_USER] }
 #         - { path: ^/statistics, roles: [ROLE_USER] }

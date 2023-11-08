@@ -7,7 +7,7 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form method="POST" name="{{ path('save_user') }}" id="login">
+    <form method="POST" name="{{ path('save_user') }}" id="login" class="card card-background">
         <div>
             <label>
                 <input value="{{ last_username }}" type="text" name="_username" placeholder="username" />

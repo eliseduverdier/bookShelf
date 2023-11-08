@@ -18,7 +18,7 @@
     <p>
         Finished at: <strong>{{ book.finished_at ? book.finished_at|date('Y⋅m⋅d') : 'currently reading' }}</strong>
     </p>
-    {% if book.private_summary %}
+    {% if book.has_private_summary %}
         🗝️
     {% else %}
         <hr>
