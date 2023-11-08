@@ -67,11 +67,10 @@ class ReadBookRepository extends ServiceEntityRepository
             ->where('b.user = :user')->setParameter('user', $user)
             ->groupBy('b.author')
             ->having('countbooks > 1')
-            ->orderBy('countbooks', 'desc');
+            ->orderBy('countbooks', 'desc')
+            ->setMaxResults(10);;
 
-        $results = $query->getQuery()->getResult();
-
-        return array_slice($results, 0, 10);
+        return $query->getQuery()->getResult();
     }
 
     public function getBookCountByType(?User $user): array
@@ -114,5 +113,20 @@ class ReadBookRepository extends ServiceEntityRepository
             $percents[$count['legend']] = (int)(($count['countbooks'] * 100) / $total);
         }
         return $percents;
+    }
+
+    public function getReadCountByYear(?User $user)
+    {
+        $query = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('YEAR(b.finished_at) as y, COUNT(b.title) as count')
+            ->from(Book::class, 'b')
+            ->where('b.user = :user')->setParameter('user', $user)
+            ->andWhere('b.finished_at IS NOT NULL')
+            ->groupBy('y')
+            ->orderBy('y', 'desc')
+            ->setMaxResults(10);
+
+        return $query->getQuery()->getResult();
     }
 }

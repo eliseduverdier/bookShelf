@@ -24,6 +24,7 @@ class StatisticsController extends AbstractController
 
         return $this->render('statistics.html.twig', [
             'authors' => $this->bookRepository->getMostReadAuthors($this->getUser()),
+            'readByYear' => $this->bookRepository->getReadCountByYear($this->getUser()),
             'notes' => $this->bookRepository->getBookCountByNote($this->getUser()),
             'types' => $this->bookRepository->getBookCountByType($this->getUser()),
         ]);

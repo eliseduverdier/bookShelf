@@ -1,0 +1,8 @@
+<div>
+    <h2>Books read by year</h2>
+    <ul>
+        {% for count in readByYear %}
+            <li>{{ count.y }}: {{ count.count }}</li>
+        {% endfor %}
+    </ul>
+</div>

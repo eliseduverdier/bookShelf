@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="grid">
-        {% include 'statistics/authors-part.html.twig' with authors%}
-        {% include 'statistics/notes-part.html.twig' with authors%}
-        {% include 'statistics/types-part.html.twig' with authors%}
+    <div class="grid grid4">
+        {% include 'statistics/notes-part.html.twig' with authors %}
+        {% include 'statistics/types-part.html.twig' with authors %}
+        {% include 'statistics/authors-part.html.twig' with authors %}
+        {% include 'statistics/count-by-year-part.html.twig' with authors %}
     </div>
-<script type="text/javascript">
-    const notes = {{ notes|json_encode|raw }};
-    const types = {{ types|json_encode|raw }};
-</script>
+    <script type="text/javascript">
+        const notes = {{ notes|json_encode|raw }};
+        const types = {{ types|json_encode|raw }};
+    </script>
 {% endblock %}
 
 {% block javascript %}
