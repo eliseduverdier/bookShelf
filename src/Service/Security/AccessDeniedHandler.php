@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Security;
+namespace App\Service\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

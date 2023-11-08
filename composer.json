@@ -11,6 +11,8 @@
     "doctrine/doctrine-bundle": "^2.8",
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "^2.11",
+    "phpunit/phpunit": "^10.4",
+    "symfony/asset": "6.3.*",
     "symfony/cache": "^6.3",
     "symfony/console": "6.3.*",
     "symfony/dotenv": "6.3.*",

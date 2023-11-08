@@ -2,7 +2,7 @@
 
 namespace App\Controller\User;
 
-use App\Services\Security\UserService;
+use App\Service\Security\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;

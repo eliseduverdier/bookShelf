@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Security;
+namespace App\Service\Security;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,10 +19,9 @@ class UserService
     #[Required]
     public EntityManagerInterface $em;
 
-    public function login(string $username, string $plaintextPassword)
+    public function login(string $username, string $plaintextPassword): void
     {
         $user = $this->userRepository->findOneBy(['username' => $username]);
-
         if (!$user) {
             throw new \Exception('Login error !');
         }
@@ -37,7 +36,7 @@ class UserService
             $this->em->persist($user);
             $this->em->flush();
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw $e;
         }
     }
 }

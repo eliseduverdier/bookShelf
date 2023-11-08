@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Services\Helpers\Utils;
+use App\Service\Helpers\Utils;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
