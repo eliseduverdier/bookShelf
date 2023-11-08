@@ -8,7 +8,7 @@
         const types = {{ types|json_encode|raw }};
     </script>
 
-    <div class="grid">
+    <div class="grid grid3">
     {% include 'statistics/authors-part.html.twig' with {'authors' : authorsStatistics} %}
     {% include 'statistics/notes-part.html.twig' with {'notes' : notesStatistics} %}
     {% include 'statistics/types-part.html.twig' with {'types' : typesStatistics} %}
@@ -25,6 +25,7 @@
                     class="books-list__item
                     {{ book.finished_at ? 'done' : (book.abandonned_at ? 'abandonned' : 'reading') }}
             ">
+                <div></div>
 
                 <div class="title-item">
                     <a href="{{ path('view_book', {'slug':book.slug}) }}"

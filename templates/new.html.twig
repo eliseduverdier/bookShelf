@@ -1,6 +1,7 @@
 {% block body %}
     <div class="new-book">
-        <form method="POST" action="{{ path('save_book') }}" class="">
+        <form method="POST" action="{{ path('save_book') }}" class="books-list__new">
+            <div></div>
             <div class="title-item">
                 <label>
                     <input type="text" name="title" placeholder="title" autocapitalize="words" required/>

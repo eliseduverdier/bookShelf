@@ -8,7 +8,7 @@ ul, form {
     margin: 0;
 }
 ul.book-list, form {
-    width: 85vw;
+    width: 95vw;
 }
 
 li {
@@ -18,7 +18,7 @@ li {
     white-space: nowrap;
 }
 
-li.books-list__item div, div.new-book form {
+li.books-list__item div {
     display: inline-block;
     padding: 5px;
     margin:0;
@@ -40,30 +40,10 @@ li.books-list__item.abandonned div {
     text-decoration: line-through;
 }
 
-li.books-list__item div.title-item,
-form div.title-item
-{
-    width: 34%;
-}
-
-li.books-list__item div.author-item,
-form div.author-item {
-    width: 25%;
-}
-
-li.books-list__item div.type-item,
-form div.type-item {
-    width: 10%;
-}
-
-li.books-list__item div.note-item,
-form div.note-item {
-    width: 10%;
-}
-
-li.books-list__item div.finished-at-item,
-form div.finished-at-item {
-    width: 15%;
+li.books-list__item, form.books-list__new {
+    display: grid;
+    grid-template-columns: .5fr 3fr 2fr 1fr 1fr 1.5fr .5fr;
+    grid-gap: 6px;
 }
 
 li.active {
@@ -71,18 +51,23 @@ li.active {
 }
 
 
-/** FORM **/
+/** FORM
 div.new-book form {
     white-space: nowrap;
 }
 div.new-book form div {
     display: inline-block;
-    padding: 5px;
-}
+}**/
 
 /* FIRST LINE */
-.books-list__title div {
+.list-header div {
     background: var(--fg-color);
     color: var(--bg-color);
     border-radius: 5px;
+
+    padding: 5px;
+}
+.list-header.books-list__item div:first-child,
+.list-header.books-list__item div:last-child {
+    background: none;
 }

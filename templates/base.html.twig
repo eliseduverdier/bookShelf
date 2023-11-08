@@ -25,7 +25,7 @@
             {% include 'css/login.css' %}
             {% include 'css/input.css' %}
             {% include 'css/nav.css' %}
-            {% include 'css/stats.css' %}
+            {% include 'css/grid.css' %}
             {% include 'css/confettis.css' %}
         </style>
     {% endblock %}
@@ -36,16 +36,19 @@
 
 <nav>
     {% block nav %}
-        {% if app.user is defined and app.user is not empty %}
-            {% include 'user/nav.html.twig' %}
-        {% else %}
-            <a href="/login">Login</a>
-        {% endif %}
+        <h1>{% block mainTitle %}<a href="/">Books</a>{% endblock %}</h1>
+
+        <div class="user-menu">
+            {% if app.user is defined and app.user is not empty %}
+                {% include 'user/nav.html.twig' %}
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
     {% endblock %}
 </nav>
 <main>
 
-    <h1>{% block mainTitle %}<a href="/">Books</a>{% endblock %}</h1>
 
     {% block content %}{% endblock %}
 

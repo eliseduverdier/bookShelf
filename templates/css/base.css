@@ -54,14 +54,6 @@ a.list__filter-link {
     font-weight: normal;
 }
 
-nav {
-    float: right;
-}
-
-h1 {
-    border-bottom: 10px solid var(--fun-color);
-}
-
 hr{
     border: 3px solid var(--fg-color);
 }

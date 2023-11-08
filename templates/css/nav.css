@@ -1,15 +1,26 @@
+nav {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    border-bottom: 10px solid var(--fun-color);
+}
+nav div.user-menu {
+    text-align: right;
+}
+
 /**
  * Show menu on hover
  */
-ul.nav-sub-menu-user {
-    background: white;
-    border: 3px solid var(--fg-color);
-    display: none;
+.user-menu {
     position: relative;
-    right: 0;
-    top: 10px;
-    width: 100px;
+    display: inline-block;
 }
-div.nav-settings:hover ul.nav-sub-menu-user {
+.nav-sub-menu-user {
+    display: none;
+    position: absolute;
+    right: 10px;
+    background: var(--bg-color);
+    padding: 20px 10px 30px 10px ;
+}
+.user-menu:hover .nav-sub-menu-user {
     display: block;
 }

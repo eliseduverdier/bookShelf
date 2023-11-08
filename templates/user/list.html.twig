@@ -7,12 +7,19 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
+    <ul class="align-center">
+        <li class="list-header grid grid2">
+            <div>Username</div>
+            <div>Last viewed at</div>
+        </li>
         {% for user in users %}
-            <li>
-                <a href="{{ path('list_books_for_user', {'username': user.username}) }}">
-                    {{ user.username }}
-                </a>
+            <li class="grid grid2">
+                <div>
+                    <a href="{{ path('list_books_for_user', {'username': user.username}) }}">
+                        {{ user.username }}
+                    </a>
+                </div>
+                <div>{{ user.lastConnectedAt|date('Y⋅m⋅d') }}</div>
             </li>
         {% endfor %}
     </ul>

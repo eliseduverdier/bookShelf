@@ -1,7 +1,0 @@
-div.grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-ul {
-    width: calc(100vh/3)
-}

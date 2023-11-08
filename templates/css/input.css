@@ -13,8 +13,8 @@ input, button, select, textarea {
     border-radius: 5px;
 }
 
-input[type=text], input[type=password], select, textarea {
-    width: 100%;
+input[type=text], input[type=password], input[type=date], button, select, textarea {
+    width: 95%;
     margin: 5px 0;
 }
 
