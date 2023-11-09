@@ -9,3 +9,7 @@ if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
 } elseif (method_exists(Dotenv::class, 'bootEnv')) {
     (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 }
+
+passthru('php bin/console doc:data:drop --if-exists --force --env=test');
+passthru('php bin/console doc:data:crea --if-not-exists --env=test');
+passthru('php bin/console doc:mig:mig --no-interaction --env=test');

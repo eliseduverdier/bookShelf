@@ -10,7 +10,7 @@
     <p><a href="/">⬅ Back</a></p>
     <div class="edit-grid">
 
-    <form method="POST" name="?action=edit&slug={{ book.slug }}" id="edit" data-slug="{{ book.slug }}">
+    <form method="POST" name="{{ path('edit_book', {'slug': book.slug}) }}" id="edit" data-slug="{{ book.slug }}">
         <div>
             <label>
                 <input value="{{ book.title }}" type="text" name="title" placeholder="title" autocomplete="off"/>

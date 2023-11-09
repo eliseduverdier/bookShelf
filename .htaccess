@@ -1,2 +1,0 @@
-
-RewriteCond '^(.*)$' '/public/$1'
