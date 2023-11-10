@@ -35,28 +35,4 @@ class ViewController extends AbstractController
             'book' => $book
         ]);
     }
-
-    #[Route('/book/{slug}/edit', name: 'view_edit_book', methods: ['GET'])]
-    public function edit(Request $request, string $slug): Response
-    {
-        $book = $this->bookRepository->findOneBy(['slug' => $slug]);
-
-        if (!$book) {
-            return $this->render('error.html.twig', [
-                'error' => "No book found with slug « $slug »"
-            ]);
-        }
-
-        if ($this->getUser()) {
-            return $this->render('edit.html.twig', [
-                'book' => $book,
-                'types' => $this->typeRepository->findAll(),
-                'notes' => $this->noteRepository->findAll(),
-            ]);
-        }
-
-        return $this->render('view.html.twig', [
-            'book' => $book
-        ]);
-    }
 }

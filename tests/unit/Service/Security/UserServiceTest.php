@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Service\Security;
+namespace App\Tests\unit\Service\Security;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -9,9 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class UserServiceTest extends TestCase
 {

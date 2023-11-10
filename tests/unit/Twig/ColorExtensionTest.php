@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Twig;
+namespace App\Tests\unit\Twig;
 
 use App\Twig\ColorExtension;
 use PHPUnit\Framework\TestCase;
@@ -28,11 +28,11 @@ class ColorExtensionTest extends TestCase
         self::assertEquals('#ffffff', $this->colorExtension->lighterColor('nope'));
     }
 
-    public function tesDarkerColor(): void
+    public function testDarkerColor(): void
     {
-        self::assertEquals('#aaaaaa', $this->colorExtension->lighterColor('#cccccc'));
+        self::assertEquals('#a3a3a3', $this->colorExtension->darkerColor('#cccccc'));
 
-        self::assertEquals('#000000', $this->colorExtension->lighterColor('nope'));
+        self::assertEquals('#000000', $this->colorExtension->darkerColor('nope'));
     }
 
 }

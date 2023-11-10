@@ -21,14 +21,40 @@ class LoginControllersTest extends WebTestCase
     public function testRedirectToLogin(): void
     {
         $urlsNotAllowedUnauthentified = [
-            '/', 'book/user1_author1_title1', '/settings', '/statistics'
+            '/', '/settings', '/statistics'
         ];
         foreach ($urlsNotAllowedUnauthentified as $url) {
             $this->client->request('GET', $url);
             self::assertEquals('http://localhost/login', $this->client->getResponse()->headers->get('location'));
         }
-        // ?? below not working, has meta-refresh ?? should be 302 ??
-        // self::assertResponseRedirects('/login');
+    }
+
+    public function testUserLogin(): void
+    {
+        $this->client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('.user-menu', 'log in');
+
+        $this->client->submitForm('log in', [
+            '_username' => 'user1',
+            '_password' => 'un deux trois',
+        ]);
+        self::assertResponseRedirects('/');
+        $this->client->followRedirect();
+        self::assertSelectorTextContains('.user-open-menu', 'Hello user1 !');
+    }
+
+    public function testUserLoginWrongPassword(): void
+    {
+        $this->client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('.user-menu', 'log in');
+
+        $this->client->submitForm('log in', [
+            '_username' => 'user1',
+            '_password' => 'nope',
+        ]);
+        self::assertSelectorTextContains('div.error p', 'Login error');
     }
 
 
@@ -48,14 +74,18 @@ class LoginControllersTest extends WebTestCase
         self::assertSelectorNotExists('#user1_author1_title1');
     }
 
-    public function testIsLogged(): void
+    public function testLogout(): void
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
         $testUser = $userRepository->find(1);
         $this->client->loginUser($testUser);
 
-        $this->client->request('GET', '/');
-        self::assertResponseIsSuccessful();
-        self::assertSelectorTextContains('.user-open-menu', 'Hello user1 !');
+        $this->client->request('GET', '/logout');
+        self::assertResponseRedirects('/');
+        $this->client->followRedirect();
+        // self::assertResponseRedirects('/login'); // ?
+        self::assertEquals('http://localhost/login', $this->client->getResponse()->headers->get('location'));
+        $this->client->followRedirect(); // to /login
+        self::assertSelectorTextContains('.user-menu', 'log in');
     }
 }

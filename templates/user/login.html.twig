@@ -21,11 +21,10 @@
     <hr>
 
     {% if error %}
-        <div>{{ error }}</div>
+        <div class="error"><p>{{ error }}</p></div>
     {% endif %}
 
     <form method="POST" name="{{ path('login') }}" id="login" class="card card-background align-center">
-        <div>log in</div>
         <div>
             <label>
                 <input value="{{ lastUsername }}" type="text" name="_username" placeholder="username"/>
@@ -38,7 +37,7 @@
             </label>
         </div>
         <div>
-            <button type="submit">OK</button>
+            <button type="submit">log in</button>
         </div>
         <div>
             <a href="/signup">or sign up</a>

@@ -18,10 +18,6 @@ class StatisticsController extends AbstractController
     #[Route('/statistics', name: 'statistics')]
     public function index(Request $request): Response
     {
-        if (null === $this->getUser()) {
-            $this->redirect('/');
-        }
-
         return $this->render('statistics.html.twig', [
             'authors' => $this->bookRepository->getMostReadAuthors($this->getUser()),
             'readByYear' => $this->bookRepository->getReadCountByYear($this->getUser()),

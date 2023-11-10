@@ -26,6 +26,10 @@ class WriteBookRepository extends ServiceEntityRepository
 
     public function edit(?Book $book, ParameterBag $parameters): void
     {
+        //todo use assert validation
+        if (!$parameters->get('title') || !$parameters->get('author')) {
+            throw new \Exception('Title and author must be filled');
+        }
         $book->title = $parameters->get('title');
         $book->author = $parameters->get('author');
 
@@ -64,6 +68,9 @@ class WriteBookRepository extends ServiceEntityRepository
 
     public function delete(?Book $book): void
     {
+        if (!$book) {
+            throw new \Exception('Book does not exists');
+        }
         $book->deletedAt = new \DateTime();
         $this->getEntityManager()->persist($book);
         $this->getEntityManager()->flush();

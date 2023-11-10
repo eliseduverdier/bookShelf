@@ -42,12 +42,26 @@ class EditControllersTest extends WebTestCase
         self::assertSelectorTextContains('li#user1_author1_title4 .title-item', 'My New Title');
     }
 
-    public function testDeleteBook(): void
+    public function testViewAndEditBookWrongData(): void
     {
-        $this->client->request('GET', '/book/user1_author1_title3/delete');
-        self::assertResponseRedirects('/');
+        $this->client->request('GET', '/book/user1_author1_title1/edit');
+        $this->client->submitForm('OK', ['title' => null]);
 
-        $this->client->followRedirect();
-        self::assertSelectorNotExists('#user1_author1_title3');
+        self::assertSelectorTextContains('div.error', 'Error while editing « user1_author1_title1 » : Title and author must be filled');
+    }
+
+    public function testViewUnknownBook(): void
+    {
+        $this->client->request('GET', '/book/unknown');
+        self::assertSelectorTextContains('div.error', 'No book found with slug « unknown »');
+
+        $this->client->request('GET', '/book/unknown/edit');
+        self::assertSelectorTextContains('div.error', 'No book found with slug « unknown »');
+    }
+
+    public function testEditOtherPeoplesBook(): void
+    {
+        $this->client->request('POST', '/book/user2_author2_title2/edit');
+        self::assertSelectorTextContains('div.error p', 'Error while editing « user2_author2_title2 » : Not your book');
     }
 }

@@ -24,7 +24,7 @@ class ListControllersTest extends WebTestCase
 
     public function testListBooks(): void
     {
-        $this->client->request('GET', '/');
+        $this->client->request('GET', '/?filter[type]=1&order[note]=asc');
         self::assertResponseIsSuccessful();
         self::assertSelectorTextContains('#user1_author1_title1 .title-item', 'My Title 1');
         self::assertSelectorTextContains('#user1_author1_title1 .finished-at-item', 'currently reading');
