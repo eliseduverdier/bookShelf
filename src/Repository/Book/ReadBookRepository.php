@@ -38,8 +38,8 @@ class ReadBookRepository extends ServiceEntityRepository
 
         if ($filter) {
             foreach ($filter as $field => $value) {
-                $query->andWhere($query->expr()->eq("b.$field", ':author'))
-                    ->setParameter('author', $value);
+                $query->andWhere($query->expr()->eq("b.$field", ':filter'))
+                    ->setParameter('filter', $value);
             }
         };
 

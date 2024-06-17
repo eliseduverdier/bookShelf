@@ -39,7 +39,7 @@
                 {#        {{ dump(book.type.name, book.note.legend) }} #}
                 <div class="type-item">
                     {% if book.type is defined and book.type is not null %}
-                        <a href="?filter[type]={{ book.type.name }}" class="list__filter-link">
+                        <a href="?filter[type]={{ book.type.id }}" class="list__filter-link">
                             <span class="badge {{ book.type.name }}">{{ book.type.name }}</span>
                         </a>
                     {% endif %}

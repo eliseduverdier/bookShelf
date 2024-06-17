@@ -32,7 +32,11 @@ class UsersController extends AbstractController
     {
         $user = $this->userRepository->findOneBy(['username' => $username]);
 
-        $allBooks =  $this->bookRepository->findForUser($user);
+        $orderAndFilter = $request->query->getIterator()->getArrayCopy();
+        $order = $orderAndFilter['order'] ?? [];
+        $filter= $orderAndFilter['filter'] ?? [];
+
+        $allBooks = $this->bookRepository->findForUser($user, $order, $filter);
         $privateBooks = array_filter($allBooks, fn ($book) => $book->is_private === false);
 
         return $this->render('list-for-user.html.twig', [
