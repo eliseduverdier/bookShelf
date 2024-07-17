@@ -31,11 +31,11 @@ class ReadBookRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('b')
-            ->addSelect('CASE WHEN b.finished_at IS NULL THEN 1 else 0 END AS HIDDEN currentlyReading') // sort "currently reading" first
+            // stopped working randomly ?!
+            // ->addSelect('CASE WHEN b.finished_at IS NULL THEN 1 else 0 END AS HIDDEN currentlyReading') // sort "currently reading" first
             ->from(Book::class, 'b')
             ->where('b.user = :user')->setParameter('user', $user)
             ->andWhere('b.deletedAt IS NULL');
-
         if ($filter) {
             foreach ($filter as $field => $value) {
                 $query->andWhere($query->expr()->eq("b.$field", ':filter'))
@@ -51,10 +51,15 @@ class ReadBookRepository extends ServiceEntityRepository
 
         $query
             ->addOrderBy('b.abandonned_at', 'asc')
-            ->addOrderBy('currentlyReading', 'desc')
+            // ->addOrderBy('currentlyReading', 'desc')
             ->addOrderBy('b.finished_at', 'desc');
 
-        return $query->getQuery()->execute();
+        $books = $query->getQuery()->execute();
+
+        $currentlyReading = array_filter($books, function (Book $book) {
+            return $book->finished_at === null && $book->abandonned_at === null;
+        });
+        return [...$currentlyReading, ...$books];
     }
 
     public function getMostReadAuthors(?User $user): array

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'books')]
+#[ORM\Table(name: 'bookshelf_books')]
 class Book
 {
     #[ORM\Id]

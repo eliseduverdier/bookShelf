@@ -12,6 +12,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
+    public function __construct() {}
+
     #[Route('/login', name: 'login', methods: ['GET'])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -31,7 +33,7 @@ class LoginController extends AbstractController
                 $request->request->get('_username'),
                 $request->request->get('_password')
             );
-            return $this->redirect('/');
+            return $this->redirect('/bookshelf');
         } catch (\Exception $e) {
             return $this->render('user/login.html.twig', [
                 'lastUsername' => $request->request->get('_username'),
@@ -44,6 +46,6 @@ class LoginController extends AbstractController
     public function logoutUser(Security $security): Response
     {
         $security->logout(false);
-        return $this->redirect('/');
+        return $this->redirect('/bookshelf');
     }
 }

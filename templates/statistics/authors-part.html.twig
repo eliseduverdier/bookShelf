@@ -2,7 +2,11 @@
     <h2>Most read authors</h2>
     <ul>
         {% for author in authors %}
-            <li>{{ author.author }} : {{ author.countbooks }}</li>
+            <li>
+                <a href="?filter[author]={{ author.author }}" class="list__filter-link">
+                    {{ author.author }} : {{ author.countbooks }}
+                </a>
+            </li>
         {% endfor %}
-</ul>
+    </ul>
 </div>

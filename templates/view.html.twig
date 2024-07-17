@@ -9,11 +9,15 @@
         By: <strong>{{ book.author }}</strong>
     </p>
     <p>
+        {% if book.type is defined and book.type is not empty %}
         Type: <span class="badge {{ book.type.name }}">{{ book.type.name }}</span>
+        {% endif %}
     </p>
     <p>
+        {% if book.note is defined and book.note is not empty %}
         Note: <span class="badge note_{{ book.note.id }}"
                     title="{{ book.note.legend }}">{{ book.note.legend }}</span>
+        {% endif %}
     </p>
     <p>
         Finished at: <strong>{{ book.finished_at ? book.finished_at|date('Y⋅m⋅d') : 'currently reading' }}</strong>
