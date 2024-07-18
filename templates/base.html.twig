@@ -36,7 +36,7 @@
 
 <nav>
     {% block nav %}
-        <h1>{% block mainTitle %}<a href="/" >Books</a>{% endblock %}</h1>
+        <h1>{% block mainTitle %}<a href="{{ path('list_books') }}" >Books</a>{% endblock %}</h1>
 
         <div class="user-menu">
             {% if app.user is defined and app.user is not empty %}

@@ -3,6 +3,7 @@
 namespace App\Controller\User;
 
 use App\Service\Security\UserService;
+use App\Util\PathUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class LoginController extends AbstractController
                 $request->request->get('_username'),
                 $request->request->get('_password')
             );
-            return $this->redirect('/bookshelf');
+            return $this->redirect(PathUtil::getRootPath());
         } catch (\Exception $e) {
             return $this->render('user/login.html.twig', [
                 'lastUsername' => $request->request->get('_username'),
@@ -46,6 +47,6 @@ class LoginController extends AbstractController
     public function logoutUser(Security $security): Response
     {
         $security->logout(false);
-        return $this->redirect('/bookshelf');
+        return $this->redirect(PathUtil::getRootPath());
     }
 }

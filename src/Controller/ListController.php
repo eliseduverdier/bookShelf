@@ -6,6 +6,7 @@ use App\Repository\Book\ReadBookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
+use App\Util\PathUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class ListController extends AbstractController
     public function index(Request $request): Response
     {
         if (!$this->getUser()) {
-            return $this->redirect('/login');
+            return $this->redirect(PathUtil::getRootPath().'login');
         }
         $order = $request->query->getIterator()->getArrayCopy();
         $booksForUser = $this->bookRepository->findForUser(

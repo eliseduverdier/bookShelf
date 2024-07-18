@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <p><a href="/">⬅ Back</a></p>
+    <p><a href="{{ path('list_books') }}">⬅ Back</a></p>
     <div class="edit-grid">
 
     <form method="POST" name="{{ path('edit_book', {'slug': book.slug}) }}" id="edit" data-slug="{{ book.slug }}">

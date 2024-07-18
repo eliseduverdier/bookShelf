@@ -37,7 +37,9 @@ class WriteBookRepository extends ServiceEntityRepository
             ? new \DateTime($parameters->get('finished_at'))
             : null;
         $book->summary = $parameters->get('summary');
-        $book->abandonned_at = $parameters->get('abandonned');
+        $book->abandonned_at = $parameters->get('abandonned_at')
+        ? new \DateTime($parameters->get('abandonned_at'))
+        : null;
         $book->is_private = $parameters->get('private_book', 0);
         $book->has_private_summary = $parameters->get('private_summary', 0);
 

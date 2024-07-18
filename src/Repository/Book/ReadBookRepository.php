@@ -59,6 +59,9 @@ class ReadBookRepository extends ServiceEntityRepository
         $currentlyReading = array_filter($books, function (Book $book) {
             return $book->finished_at === null && $book->abandonned_at === null;
         });
+        $books = array_filter($books, function (Book $book) {
+            return $book->finished_at !== null || $book->abandonned_at !== null;
+        });
         return [...$currentlyReading, ...$books];
     }
 

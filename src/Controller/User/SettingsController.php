@@ -3,6 +3,7 @@
 namespace App\Controller\User;
 
 use App\Repository\UserRepository;
+use App\Util\PathUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,6 @@ class SettingsController extends AbstractController
             $this->getUser(),
             $request->request->get('color')
         );
-        return $this->redirect('/settings');
+        return $this->redirect(PathUtil::getRootPath().'settings');
     }
 }

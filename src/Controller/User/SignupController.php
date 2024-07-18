@@ -4,6 +4,7 @@ namespace App\Controller\User;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Util\PathUtil;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,6 +46,6 @@ class SignupController extends AbstractController
 
         $security->login($user);
 
-        return $this->redirect('/');
+        return $this->redirect(PathUtil::getRootPath());
     }
 }

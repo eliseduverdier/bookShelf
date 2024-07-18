@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\Book\ReadBookRepository;
 use App\Repository\Book\WriteBookRepository;
+use App\Util\PathUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,6 @@ class SaveController extends AbstractController
     {
         $this->bookRepository->save($request->request, $this->getUser());
 
-        return $this->redirect('/');
+        return $this->redirect(PathUtil::getRootPath());
     }
 }

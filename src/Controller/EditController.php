@@ -6,6 +6,7 @@ use App\Repository\Book\ReadBookRepository;
 use App\Repository\Book\WriteBookRepository;
 use App\Repository\NoteRepository;
 use App\Repository\TypeRepository;
+use App\Util\PathUtil;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -39,7 +40,7 @@ class EditController extends AbstractController
         }
 
         if ($book->user !== $this->getUser()) {
-            return new RedirectResponse("/book/$slug");
+            return new RedirectResponse(PathUtil::getRootPath()."/book/$slug");
         }
 
         return $this->render('edit.html.twig', [
@@ -62,7 +63,7 @@ class EditController extends AbstractController
 
         try {
             $this->writeBookRepository->edit($book, $request->request);
-            return new RedirectResponse('/');
+            return new RedirectResponse(PathUtil::getRootPath());
         } catch (\Throwable $e) {
             return $this->render('error.html.twig', [
                 'error' => "Error while editing « $slug » : {$e->getMessage()}"
