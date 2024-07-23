@@ -1,7 +1,5 @@
 # Books
 
-(Not deployed for now)
-
 - App allowing users to store a list of their books.
 
 - Also with statistics about those books.
@@ -13,3 +11,7 @@
 <img src="_design/stats.png" width="600px"/>
 
 # init project
+```
+make init
+make run
+```
