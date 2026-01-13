@@ -42,7 +42,7 @@
             {% if app.user is defined and app.user is not empty %}
                 {% include 'user/nav.html.twig' %}
             {% else %}
-                <a href="{{ env == 'prod' ? '/bookshelf' : '' }}/login">log in || sign up</a>
+                <a href="{{ path('login') }}">log in || sign up</a>
             {% endif %}
         </div>
     {% endblock %}

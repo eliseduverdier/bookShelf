@@ -7,7 +7,7 @@
             author
             {% if filter.author is defined %} <a href="/">×</a> {% endif %}
             {% if sort is defined and sort[0] == 'author' %}
-                <a href="/">×</a>
+                <a href="{{ path('list_books') }}">×</a>
             {% else %}
                 <a href="?order[author]=asc">▼</a>
             {% endif %}
@@ -19,7 +19,7 @@
         <div class="note-item">
             note
             {% if filter.note is defined %} <a href="/">×</a> {% endif %}
-            {% if sort is defined and sort[0] == 'note' %} <a href="/">×</a>
+            {% if sort is defined and sort[0] == 'note' %} <a href="{{ path('list_books') }}">×</a>
             {% else %} <a href="?order[note]=desc">▼</a>
             {% endif %}
         </div>

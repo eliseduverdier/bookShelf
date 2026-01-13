@@ -3,7 +3,7 @@ PHONY: tests
 
 init: # to do manually
 	composer install
-	mysq-l -e 'create database book_with_users'
+	mysql -e 'create database book_with_users'
 
 ###############
 # Build     #
@@ -11,7 +11,7 @@ init: # to do manually
 install:
 	composer install
 
-# first you need symfont cli installed. Maybe in your ~/.config
+# first you need symfony cli installed. Maybe in your ~/.config
 start:
 	symfony serve
 
