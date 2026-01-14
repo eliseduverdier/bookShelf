@@ -1,19 +1,27 @@
-PHONY: tests
-
-
-init: # to do manually
-	composer install
-	mysql -e 'create database book_with_users'
+PHONY: tests  build  start  stop  restart  logs
 
 ###############
-# Build     #
+# Docker      #
 ###############
-install:
-	composer install
+build:
+	docker compose build
 
-# first you need symfony cli installed. Maybe in your ~/.config
 start:
-	symfony serve
+	docker compose up -d
+	@echo "-> http://localhost:8000"
+
+stop:
+	docker compose down
+
+restart:
+	docker compose restart
+
+logs:
+	docker compose logs -f
+
+sh:
+	docker compose exec web bash
+
 
 ###############
 # Quality     #

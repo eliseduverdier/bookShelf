@@ -6,7 +6,8 @@ class PathUtil
 {
     static public function getRootPath(): string
     {
-        if ($_SERVER['SERVER_NAME'] === '127.0.0.1') {
+        // hack to upload the site on a subfolder in my web host
+        if (in_array($_SERVER['SERVER_NAME'], ['127.0.0.1', 'localhost'])) {
             return '/';
         } else {
             return '/bookshelf/';

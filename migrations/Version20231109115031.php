@@ -64,9 +64,10 @@ final class Version20231109115031 extends AbstractMigration
 
         $this->addSql("INSERT INTO `bookshelf_notes` VALUES (1,'★','mhh'),(2,'★ ★','ok…'),(3,'★ ★ ★','bien')");
         $this->addSql("INSERT INTO `bookshelf_types` VALUES (1,'novel'),(2,'essay')");
+        // users have the password "password"
         $this->addSql("INSERT INTO `bookshelf_users` VALUES 
-                        (1,'user1','$2y$13\$ggQEOYIP0GTeBrNaeg5ijeSlRnpx3MCLBlCd4zN4OpPQL0gL4D5mS','2023-11-08 15:54:49','#00a171'),
-                        (2,'user2','$2y$13\$ggQEOYIP0GTeBrNaeg5ijeSlRnpx3MCLBlCd4zN4OpPQL0gL4D5mS','2023-11-08 15:54:49',null) ");
+                        (1,'user1','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2','#00a171'),
+                        (2,'user2','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2',null) ");
         $this->addSql("INSERT INTO `bookshelf_books` VALUES 
                         (1,1,3,'My Title 1','Author 1','user1_author1_title1','summary for book 1',NULL,NULL,NULL,NULL,NULL,1,0,0),
                         (2,1,1,'My Title 2','Author 2','user2_author2_title2',NULL,'2022-10-03 00:00:00',NULL,NULL,'2023-11-04 08:21:15','2023-11-04 08:21:15',2,0,0),
