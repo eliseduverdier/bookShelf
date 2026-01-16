@@ -1,5 +1,5 @@
 const isFinished = new URL(document.URL).searchParams.get('finished')
-console.log(isFinished);
+if (isFinished) console.log('book is finished !');
 
 if (isFinished) {
     let divs = [];

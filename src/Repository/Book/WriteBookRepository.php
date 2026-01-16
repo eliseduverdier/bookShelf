@@ -38,8 +38,8 @@ class WriteBookRepository extends ServiceEntityRepository
             : null;
         $book->summary = $parameters->get('summary');
         $book->abandonned_at = $parameters->get('abandonned_at')
-        ? new \DateTime($parameters->get('abandonned_at'))
-        : null;
+            ? new \DateTime($parameters->get('abandonned_at'))
+            : null;
         $book->is_private = $parameters->get('private_book', 0);
         $book->has_private_summary = $parameters->get('private_summary', 0);
 
@@ -74,6 +74,13 @@ class WriteBookRepository extends ServiceEntityRepository
             throw new \Exception('Book does not exists');
         }
         $book->deletedAt = new \DateTime();
+        $this->getEntityManager()->persist($book);
+        $this->getEntityManager()->flush();
+    }
+
+    public function finish(?Book $book, \DateTime $date): void
+    {
+        $book->finished_at = $date;
         $this->getEntityManager()->persist($book);
         $this->getEntityManager()->flush();
     }

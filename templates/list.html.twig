@@ -44,6 +44,9 @@
                     {{ book.finished_at
                     ? book.finished_at|date('Y⋅m⋅d')
                     : (book.abandonned_at ? book.abandonned_at|date('Y⋅m⋅d') : 'currently reading') }}
+                    {% if not book.finished_at and not book.abandonned_at %}
+                        <a href="{{ path('finish_book', {'slug': book.slug}) }}">↝&nbsp;finish</a>
+                    {% endif %}
                 </div>
                 <div></div>
             </li>
@@ -54,4 +57,5 @@
 
 {% block javascript %}
     {% include 'js/canvas-cover-list.js' %}
+    {% include 'js/finished.js' %}
 {% endblock %}
