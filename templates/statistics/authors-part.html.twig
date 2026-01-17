@@ -3,7 +3,7 @@
     <ul>
         {% for author in authors %}
             <li>
-                <a href="?filter[author]={{ author.author }}" class="list__filter-link">
+                <a href="{{ path('list_books', {'filter[author]': author.author}) }}" class="list__filter-link">
                     {{ author.author }} : {{ author.countbooks }}
                 </a>
             </li>
