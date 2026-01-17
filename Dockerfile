@@ -1,13 +1,16 @@
 FROM php:8.3-apache
 
 RUN docker-php-ext-install pdo_mysql
-
+RUN apt-get update && apt install -y zip unzip
 RUN a2enmod rewrite
 
 RUN echo '<Directory /var/www/html/public>\n\
     AllowOverride All\n\
     Require all granted\n\
 </Directory>' >> /etc/apache2/apache2.conf
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN chmod +x /usr/bin/composer
 
 COPY . /var/www/html/
 
