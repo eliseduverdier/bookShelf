@@ -47,22 +47,13 @@ class ReadBookRepository extends ServiceEntityRepository
             foreach ($order as $field => $way) {
                 $query->addOrderBy("b.$field", $way);
             }
+        } else {
+            // Default ordering: currently reading first, then others by most recent abandoned/finished date
+            $query->addOrderBy('CASE WHEN b.finished_at IS NULL AND b.abandonned_at IS NULL THEN 0 ELSE 1 END', 'ASC');
+            $query->addOrderBy('CASE WHEN b.finished_at > b.abandonned_at OR b.abandonned_at IS NULL THEN b.finished_at ELSE b.abandonned_at END', 'DESC');
         }
 
-        $query
-            ->addOrderBy('b.abandonned_at', 'asc')
-            // ->addOrderBy('currentlyReading', 'desc')
-            ->addOrderBy('b.finished_at', 'desc');
-
-        $books = $query->getQuery()->execute();
-
-        $currentlyReading = array_filter($books, function (Book $book) {
-            return $book->finished_at === null && $book->abandonned_at === null;
-        });
-        $books = array_filter($books, function (Book $book) {
-            return $book->finished_at !== null || $book->abandonned_at !== null;
-        });
-        return [...$currentlyReading, ...$books];
+        return $query->getQuery()->execute();
     }
 
     public function getMostReadAuthors(?User $user): array
