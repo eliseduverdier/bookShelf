@@ -51,7 +51,7 @@ class Book
         ?Type $type,
         ?Note $note,
         ?\DateTime $finished_at = null,
-    ){
+    ) {
         $this->slug = Utils::slugify("{$user->getUserIdentifier()}_{$title}_$author");
         $this->user = $user;
         $this->title = $title;

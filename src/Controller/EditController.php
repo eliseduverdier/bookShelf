@@ -35,12 +35,12 @@ class EditController extends AbstractController
 
         if (!$book) {
             return $this->render('error.html.twig', [
-                'error' => "No book found with slug « $slug »"
+                'error' => "No book found with slug « $slug »",
             ]);
         }
 
         if ($book->user !== $this->getUser()) {
-            return new RedirectResponse(PathUtil::getRootPath()."/book/$slug");
+            return new RedirectResponse(PathUtil::getRootPath() . "/book/$slug");
         }
 
         return $this->render('edit.html.twig', [
@@ -57,7 +57,7 @@ class EditController extends AbstractController
 
         if ($this->getUser() && $book->user !== $this->getUser()) {
             return $this->render('error.html.twig', [
-                'error' => "Error while editing « $slug » : Not your book"
+                'error' => "Error while editing « $slug » : Not your book",
             ]);
         }
 
@@ -66,7 +66,7 @@ class EditController extends AbstractController
             return new RedirectResponse(PathUtil::getRootPath());
         } catch (\Throwable $e) {
             return $this->render('error.html.twig', [
-                'error' => "Error while editing « $slug » : {$e->getMessage()}"
+                'error' => "Error while editing « $slug » : {$e->getMessage()}",
             ]);
         }
     }

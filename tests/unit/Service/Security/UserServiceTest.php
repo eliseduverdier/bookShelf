@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\unit\Service\Security;
 
 use App\Entity\User;
@@ -35,7 +37,7 @@ class UserServiceTest extends TestCase
         $this->userService->em = $this->em;
     }
 
-    public function testLoginNoUser()
+    public function testLoginNoUser(): void
     {
         $this->userRepository->method('findOneBy')->willReturn(null);
         $this->userService->userRepository = $this->userRepository;
@@ -45,7 +47,7 @@ class UserServiceTest extends TestCase
         $this->userService->login('unknown', 'password');
     }
 
-    public function testLoginInvalidPassword()
+    public function testLoginInvalidPassword(): void
     {
         $this->userRepository->method('findOneBy')->willReturn(new User('user'));
         $this->passwordHasher->method('isPasswordValid')->willReturn(false);
@@ -55,7 +57,7 @@ class UserServiceTest extends TestCase
         $this->userService->login('unknown', 'password');
     }
 
-    public function testLoginEntityManagerError()
+    public function testLoginEntityManagerError(): void
     {
         $this->userRepository->method('findOneBy')->willReturn(new User('user'));
         $this->passwordHasher->method('isPasswordValid')->willReturn(true);
@@ -68,7 +70,7 @@ class UserServiceTest extends TestCase
         $this->userService->login('unknown', 'password');
     }
 
-    public function testLoginSecurityError()
+    public function testLoginSecurityError(): void
     {
         $this->userRepository->method('findOneBy')->willReturn(new User('user'));
         $this->passwordHasher->method('isPasswordValid')->willReturn(true);
@@ -81,7 +83,7 @@ class UserServiceTest extends TestCase
         $this->userService->login('unknown', 'password');
     }
 
-    public function testLoginOK()
+    public function testLoginOK(): void
     {
         $this->userRepository->method('findOneBy')->willReturn(new User('user'));
         $this->passwordHasher->method('isPasswordValid')->willReturn(true);

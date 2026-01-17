@@ -19,8 +19,6 @@ class Note
     #[ORM\Column(type: 'string')]
     public string $legend;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
 }

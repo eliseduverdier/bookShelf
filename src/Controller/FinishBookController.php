@@ -30,6 +30,6 @@ class FinishBookController extends AbstractController
 
         $this->writeBookRepository->finish($book, new \DateTime());
 
-        return $this->redirectToRoute('list_books',['finished'=>1]);
+        return $this->redirectToRoute('list_books', ['finished' => 1]);
     }
 }

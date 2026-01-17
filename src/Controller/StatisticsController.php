@@ -11,7 +11,6 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class StatisticsController extends AbstractController
 {
-
     #[Required]
     public ReadBookRepository $bookRepository;
 

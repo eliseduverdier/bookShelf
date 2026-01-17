@@ -34,10 +34,10 @@ class UsersController extends AbstractController
 
         $orderAndFilter = $request->query->getIterator()->getArrayCopy();
         $order = $orderAndFilter['order'] ?? [];
-        $filter= $orderAndFilter['filter'] ?? [];
+        $filter = $orderAndFilter['filter'] ?? [];
 
         $allBooks = $this->bookRepository->findForUser($user, $order, $filter);
-        $privateBooks = array_filter($allBooks, fn ($book) => $book->is_private === false);
+        $privateBooks = array_filter($allBooks, fn($book) => $book->is_private === false);
 
         return $this->render('list-for-user.html.twig', [
             'user' => $user,

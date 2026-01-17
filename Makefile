@@ -22,17 +22,14 @@ logs:
 sh:
 	docker compose exec web bash
 
-
 ###############
 # Quality     #
 ###############
+csfix:
+	docker compose exec web bash -c './vendor/bin/php-cs-fixer fix'
 
 tests:
-	./vendor/bin/phpunit
-
-#tests:
-# if filter
-#	./vendor/bin/phpunit --filter $1
+	docker compose exec web bash -c './vendor/bin/phpunit'
 
 coverage:
-	XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html tests/coverage
+	docker compose exec web bash -c 'XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html tests/coverage'

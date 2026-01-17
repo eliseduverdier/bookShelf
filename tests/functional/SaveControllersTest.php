@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\functional;
 
 use App\Repository\UserRepository;
@@ -35,7 +37,7 @@ class SaveControllersTest extends WebTestCase
         ]);
         self::assertResponseRedirects('/');
         $this->client->followRedirect();
-//        dd($this->client->getResponse()->getContent());
+        //        dd($this->client->getResponse()->getContent());
         self::assertSelectorTextContains('li#user1-my-new-book-author-1 .title-item', 'My New Book');
         self::assertSelectorTextContains('li#user1-my-new-book-author-1 .finished-at-item', '2023⋅01⋅01');
     }

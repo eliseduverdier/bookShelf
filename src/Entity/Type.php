@@ -16,7 +16,5 @@ class Type
     #[ORM\Column(type: 'string')]
     public string $name;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 }

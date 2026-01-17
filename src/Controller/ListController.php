@@ -29,7 +29,7 @@ class ListController extends AbstractController
     public function index(Request $request): Response
     {
         if (!$this->getUser()) {
-            return $this->redirect(PathUtil::getRootPath().'login');
+            return $this->redirect(PathUtil::getRootPath() . 'login');
         }
         $order = $request->query->getIterator()->getArrayCopy();
         $booksForUser = $this->bookRepository->findForUser(

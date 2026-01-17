@@ -19,8 +19,7 @@ class SaveController extends AbstractController
     #[Route('/book', name: 'save_book', methods: ['POST'])]
     public function index(
         Request $request,
-    ): Response
-    {
+    ): Response {
         $this->bookRepository->save($request->request, $this->getUser());
 
         return $this->redirect(PathUtil::getRootPath());

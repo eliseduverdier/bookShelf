@@ -27,12 +27,12 @@ class ViewController extends AbstractController
 
         if (!$book) {
             return $this->render('error.html.twig', [
-                'error' => "No book found with slug « $slug »"
+                'error' => "No book found with slug « $slug »",
             ]);
         }
 
         return $this->render('view.html.twig', [
-            'book' => $book
+            'book' => $book,
         ]);
     }
 }

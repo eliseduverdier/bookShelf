@@ -7,7 +7,6 @@ use Twig\TwigFilter;
 
 class ColorExtension extends AbstractExtension
 {
-
     /** @codeCoverageIgnore */
     public function getFilters(): array
     {
@@ -34,13 +33,13 @@ class ColorExtension extends AbstractExtension
             $G = hexdec($matches[2]);
             $B = hexdec($matches[3]);
 
-            $newR = dechex(min(255, (int)($R + ($R * $amount) / 100)));
+            $newR = dechex(min(255, (int) ($R + ($R * $amount) / 100)));
             $newR = str_pad($newR, 2, '0', STR_PAD_LEFT);
 
-            $newG = dechex(min(255, (int)($G + ($G * $amount) / 100)));
+            $newG = dechex(min(255, (int) ($G + ($G * $amount) / 100)));
             $newG = str_pad($newG, 2, '0', STR_PAD_LEFT);
 
-            $newB = dechex(min(255, (int)($B + ($B * $amount) / 100)));
+            $newB = dechex(min(255, (int) ($B + ($B * $amount) / 100)));
             $newB = str_pad($newB, 2, '0', STR_PAD_LEFT);
 
             return "#{$newR}{$newG}{$newB}";

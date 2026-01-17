@@ -28,6 +28,6 @@ class SettingsController extends AbstractController
             $this->getUser(),
             $request->request->get('color')
         );
-        return $this->redirect(PathUtil::getRootPath().'settings');
+        return $this->redirect(PathUtil::getRootPath() . 'settings');
     }
 }

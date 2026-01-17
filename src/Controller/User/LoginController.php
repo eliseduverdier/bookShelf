@@ -26,9 +26,9 @@ class LoginController extends AbstractController
 
     #[Route('/login', name: 'log_user', methods: ['POST'])]
     public function logUser(
-        Request $request, UserService $userService
-    ): Response
-    {
+        Request $request,
+        UserService $userService
+    ): Response {
         try {
             $userService->login(
                 $request->request->get('_username'),

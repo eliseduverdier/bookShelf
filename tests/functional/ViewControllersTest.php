@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\functional;
 
 use App\Repository\UserRepository;
@@ -29,8 +31,8 @@ class ViewControllersTest extends WebTestCase
         $this->client->request('GET', '/book/unknown');
         self::assertSelectorTextContains('div.error p', 'No book found with slug « unknown »');
 
-//        $this->client->request('GET', '/book/unknown/edit');
-//        dd($this->client->getResponse()->getContent());
-//        self::assertResponseRedirects('/login');
+        //        $this->client->request('GET', '/book/unknown/edit');
+        //        dd($this->client->getResponse()->getContent());
+        //        self::assertResponseRedirects('/login');
     }
 }

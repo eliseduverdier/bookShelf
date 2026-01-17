@@ -10,9 +10,9 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
 .phpunit.cache
 /tests/coverage/
-###< phpunit/phpunit ###
+
+.php-cs-fixer.cache

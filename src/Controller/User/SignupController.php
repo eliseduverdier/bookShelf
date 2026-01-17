@@ -32,8 +32,7 @@ class SignupController extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,
         Security $security,
-    ): Response
-    {
+    ): Response {
         $username = $request->request->get('_username');
         $user = new User($username);
         $plaintextPassword = $request->request->get('_password');

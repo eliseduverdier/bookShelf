@@ -26,8 +26,7 @@ class ReadBookRepository extends ServiceEntityRepository
         ?UserInterface $user,
         array $order = [],
         array $filter = [],
-    )
-    {
+    ) {
         $query = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('b')
@@ -67,7 +66,8 @@ class ReadBookRepository extends ServiceEntityRepository
             ->groupBy('b.author')
             ->having('countbooks > 1')
             ->orderBy('countbooks', 'desc')
-            ->setMaxResults(10);;
+            ->setMaxResults(10);
+        ;
 
         return $query->getQuery()->getResult();
     }
@@ -109,7 +109,7 @@ class ReadBookRepository extends ServiceEntityRepository
         $total = array_sum(array_column($result, 'countbooks'));
         $percents = [];
         foreach ($result as $count) {
-            $percents[$count['legend']] = (int)(($count['countbooks'] * 100) / $total);
+            $percents[$count['legend']] = (int) (($count['countbooks'] * 100) / $total);
         }
         return $percents;
     }

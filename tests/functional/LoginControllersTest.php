@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\functional;
 
 use App\Repository\UserRepository;
@@ -21,7 +23,7 @@ class LoginControllersTest extends WebTestCase
     public function testRedirectToLogin(): void
     {
         $urlsNotAllowedUnauthentified = [
-            '/', '/settings', '/statistics'
+            '/', '/settings', '/statistics',
         ];
         foreach ($urlsNotAllowedUnauthentified as $url) {
             $this->client->request('GET', $url);

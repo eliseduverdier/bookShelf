@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\unit\Service\Helpers;
 
 use App\Service\Helpers\Utils;
@@ -7,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {
-
-    public function testSlugify( ): void
+    public function testSlugify(): void
     {
         self::assertEquals('eaea', Utils::slugify('éàÉÀ'));
         self::assertEquals('un-deux-trois-4-5', Utils::slugify('UN & deux trois 4 5'));
