@@ -17,6 +17,10 @@ security:
             form_login:
                 login_path: log_user
                 check_path: login
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 15552000 # 6 months in seconds
+                path: /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
