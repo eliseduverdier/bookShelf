@@ -42,7 +42,6 @@ final class Version20231109115031 extends AbstractMigration
 
         $this->addSql('CREATE TABLE IF NOT EXISTS bookshelf_users (
             id INT AUTO_INCREMENT NOT NULL,
-
             username VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`,
             password VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`,
             last_connected_at DATETIME NOT NULL,
@@ -57,7 +56,6 @@ final class Version20231109115031 extends AbstractMigration
 
         $this->addSql('CREATE TABLE bookshelf_notes (
             id INT AUTO_INCREMENT NOT NULL,
-
             name VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`,
             legend VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`,
             PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
@@ -66,8 +64,8 @@ final class Version20231109115031 extends AbstractMigration
         $this->addSql("INSERT INTO `bookshelf_types` VALUES (1,'novel'),(2,'essay')");
         // users have the password "password"
         $this->addSql("INSERT INTO `bookshelf_users` VALUES
-                        (1,'user1','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2','#00a171'),
-                        (2,'user2','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2',null) ");
+                        (1,'user1','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2','2022-10-03 00:00:00','#00a171'),
+                        (2,'user2','$2y$13\$Xo8VDKjLDs91DX4mrSo5Qeu7F8NEEaf.MQee53NjAPxTyAXEG6tI2','2022-10-03 00:00:00',null) ");
         $this->addSql("INSERT INTO `bookshelf_books` VALUES
                         (1,1,3,'My Title 1','Author 1','user1_author1_title1','summary for book 1',NULL,NULL,NULL,NULL,NULL,1,0,0),
                         (2,1,1,'My Title 2','Author 2','user2_author2_title2',NULL,'2022-10-03 00:00:00',NULL,NULL,'2023-11-04 08:21:15','2023-11-04 08:21:15',2,0,0),

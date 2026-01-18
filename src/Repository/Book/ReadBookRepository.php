@@ -30,8 +30,6 @@ class ReadBookRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()
             ->createQueryBuilder()
             ->select('b')
-            // stopped working randomly ?!
-            // ->addSelect('CASE WHEN b.finished_at IS NULL THEN 1 else 0 END AS HIDDEN currentlyReading') // sort "currently reading" first
             ->from(Book::class, 'b')
             ->where('b.user = :user')->setParameter('user', $user)
             ->andWhere('b.deletedAt IS NULL');

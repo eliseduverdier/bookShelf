@@ -27,7 +27,6 @@
             {% include 'css/input.css' %}
             {% include 'css/nav.css' %}
             {% include 'css/grid.css' %}
-{#            {% include 'css/confettis.css' %}#}
         </style>
     {% endblock %}
     {% block javascripts %}
@@ -37,7 +36,7 @@
 
 <nav>
     {% block nav %}
-        <h1>{% block mainTitle %}<a href="{{ path('list_books') }}" >Books</a>{% endblock %}</h1>
+        <h1>{% block mainTitle %}<a href="{{ path('list_books') }}">Books</a>{% endblock %}</h1>
 
         <div class="user-menu">
             {% if app.user is defined and app.user is not empty %}

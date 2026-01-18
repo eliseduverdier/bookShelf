@@ -39,7 +39,7 @@ class LoginControllersTest extends WebTestCase
 
         $this->client->submitForm('log in', [
             '_username' => 'user1',
-            '_password' => 'un deux trois',
+            '_password' => 'password',
         ]);
         self::assertResponseRedirects('/');
         $this->client->followRedirect();
@@ -85,7 +85,6 @@ class LoginControllersTest extends WebTestCase
         $this->client->request('GET', '/logout');
         self::assertResponseRedirects('/');
         $this->client->followRedirect();
-        // self::assertResponseRedirects('/login'); // ?
         self::assertEquals('http://localhost/login', $this->client->getResponse()->headers->get('location'));
         $this->client->followRedirect(); // to /login
         self::assertSelectorTextContains('.user-menu', 'log in');
