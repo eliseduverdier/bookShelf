@@ -11,8 +11,9 @@
             <li
                     id="{{ book.slug }}"
                     class="books-list__item
-                    {{ book.finished_at ? 'done' : (book.abandonned_at ? 'abandonned' : 'reading') }}
-            ">
+                        {{ book.finished_at ? 'done' : (book.abandonned_at ? 'abandonned' : 'reading') -}}
+                " {{ book.abandonned_at ? 'title="Abandonné"' : '' }}
+            >
                 <div><canvas id="book-cover_{{ book.slug }}" width="26" height="30"></canvas></div>
 
                 <div class="title-item">
@@ -24,7 +25,6 @@
                         <strong>{{ book.author_name ?? book.author }}</strong>
                     </a>
                 </div>
-                {#        {{ dump(book.type.name, book.note.legend) }} #}
                 <div class="type-item">
                     {% if book.type is defined and book.type is not null %}
                         <a href="?filter[type]={{ book.type.name }}" class="list__filter-link">
@@ -38,6 +38,16 @@
                         <span class="badge note_{{ book.note.id }}"
                               title="{{ book.note.legend }}">{{ book.note.legend }}</span>
                         </a>
+                    {% elseif book.finished_at is defined and book.finished_at is not null %}
+                        <form class="inline" action="{{ path('note_book', {'slug': book.slug}) }}">
+                            <select name="note">
+                                <option value="">—Note—</option>
+                                {% for note in notes %}
+                                    <option value="{{ note.id }}"> {{ note.legend }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">✔</button>
+                        </form>
                     {% endif %}
                 </div>
                 <div class="finished-at-item">

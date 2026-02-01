@@ -84,4 +84,12 @@ class WriteBookRepository extends ServiceEntityRepository
         $this->getEntityManager()->persist($book);
         $this->getEntityManager()->flush();
     }
+
+    public function note(?Book $book, int $note): void
+    {
+        $note = $this->noteRepository->find($note);
+        $book->note = $note;
+        $this->getEntityManager()->persist($book);
+        $this->getEntityManager()->flush();
+    }
 }

@@ -66,4 +66,27 @@ class EditControllersTest extends WebTestCase
         $this->client->request('POST', '/book/user2_author2_title2/edit');
         self::assertSelectorTextContains('div.error p', 'Error while editing « user2_author2_title2 » : Not your book');
     }
+
+    public function testFinishThenNoteBook(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('add', [
+            'title' => 'titleX',
+            'author' => 'Author1',
+            'type' => '1',
+        ]);
+
+        $this->client->followRedirect();
+        self::assertSelectorTextContains('li#user1-titlex-author1 .title-item', 'titleX');
+        self::assertSelectorTextContains('li#user1-titlex-author1 .finished-at-item', 'currently reading');
+        self::assertSelectorTextSame('li#user1-titlex-author1 .note-item', '');
+
+        $this->client->request('GET', '/finish-book/user1-titlex-author1');
+        $this->client->followRedirect();
+        self::assertSelectorTextContains('li#user1-titlex-author1 .finished-at-item', (new \DateTime())->format('Y⋅m⋅d'));
+
+        $this->client->request('GET', '/note-book/user1-titlex-author1?note=2');
+        $this->client->followRedirect();
+        self::assertSelectorTextContains('li#user1-titlex-author1 .note-item', 'ok…');
+    }
 }
