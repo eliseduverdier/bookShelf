@@ -5,6 +5,7 @@
 ###############
 build:
 	docker compose build
+	@make migrate
 
 start:
 	docker compose up -d
@@ -23,7 +24,7 @@ sh:
 	docker compose exec web bash
 
 migrate:
-	docker compose exec web bash -c 'php bin/console doctrine:migrations:rollup'
+	docker compose exec web bash -c 'php bin/console doctrine:migrations:rollup -n'
 
 ###############
 # Quality     #
