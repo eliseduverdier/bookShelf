@@ -3,13 +3,14 @@
     <meta charset="UTF-8">
     <title>{% block title %}Books{% endblock %}</title>
 
+    {% set hasFavColor = app.user is defined and app.user is not empty and app.user.favColor is not empty %}
+    <meta name="theme-color" content="{{ hasFavColor ? app.user.favColor : '#04c062' }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📚</text></svg>">
     {% block stylesheets %}
         <style>
-            {% set hasFavColor = app.user is defined and app.user is not empty and app.user.favColor is not empty %}
             :root {
                 --bg-color: #fff;
                 --fg-color: {{ hasFavColor ? app.user.favColor : '#04c062' }};
